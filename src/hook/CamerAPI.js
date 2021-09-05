@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
+import axios from "axios";
 
 const styles = StyleSheet.create({
   container: {
@@ -38,7 +39,7 @@ const CameraAPI = () => {
       const { status } = await Camera.requestPermissionsAsync();
       setHasPermission(status === "granted");
     })();
-  }, []);
+  }, [text]);
 
   if (hasPermission === null) {
     return <View />;
@@ -48,7 +49,28 @@ const CameraAPI = () => {
   }
 
   const takePhoto = async () => {
-    const photo = await ref.current.takePictureAsync();
+    const options = { quality: 0.7, base64: true };
+    const text = await ref.current.takePictureAsync(options);
+    try {
+      const { data } = await axios.post(
+        "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBWS_YMp1f6NUSsBL-JlL3zc4s7zXyx_4I",
+        {
+          requests: [
+            {
+              image: { content: text.base64 },
+
+              features: [
+                { type: "TEXT_DETECTION", maxResults: 10 },
+                { type: "DOCUMENT_TEXT_DETECTION", maxResults: 10 },
+              ],
+            },
+          ],
+        }
+      );
+      setText(data.responses[0].fullTextAnnotation.text);
+    } catch (e) {
+      console.log("error: ", e);
+    }
   };
 
   return text ? (
@@ -60,7 +82,7 @@ const CameraAPI = () => {
           marginBottom: 16,
         }}
       >
-        OCR Text
+        {text}
       </Text>
     </View>
   ) : (

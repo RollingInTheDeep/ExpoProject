@@ -1,13 +1,6 @@
 import "react-native-gesture-handler";
-import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Button,
-  Text,
-  View,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import React from "react";
+import { StyleSheet, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import BottomTabNavigation from "./src/navigation/BottomTabNavigation";
 
