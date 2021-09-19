@@ -2,7 +2,7 @@ import "react-native-gesture-handler";
 import React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import BottomTabNavigation from "./src/navigation/BottomTabNavigation";
+import BottomTabNavigation from "navigation/BottomTabNavigation";
 
 const styles = StyleSheet.create({
   wrap: {

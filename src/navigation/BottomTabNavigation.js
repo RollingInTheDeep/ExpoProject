@@ -4,9 +4,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { View, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import HomeScreen from "../pages/HomeScreen";
-import ProfileScreen from "../pages/ProfileScreen";
-import CameraAPI from "../hook/CamerAPI";
+import HomeScreen from "screens/HomeScreen";
+import ProfileScreen from "screens/ProfileScreen";
+import CameraAPI from "hook/CamerAPI";
 import Icon from "react-native-ionicons";
 
 const Tab = createBottomTabNavigator();
