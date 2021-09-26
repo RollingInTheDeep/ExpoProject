@@ -2,7 +2,6 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { View, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import HomeScreen from "screens/HomeScreen";
 import ProfileScreen from "screens/ProfileScreen";
