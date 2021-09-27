@@ -1,16 +1,16 @@
 import React, { memo } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View } from "react-native";
 import ReadMore from "react-native-read-more-text";
 import { Card } from "react-native-paper";
 import CardButton from "../CardButton/CardButton";
 import styles from "./styles";
 
-function MyListItem({ text }) {
+function MyListItem({ text, screen }) {
   return (
     <View>
       <Card>
         <View style={styles.container}>
-          <CardButton />
+          <CardButton screen={screen} />
           <ReadMore
             numberOfLines={3}
             renderTruncatedFooter={renderTruncatedFooter}

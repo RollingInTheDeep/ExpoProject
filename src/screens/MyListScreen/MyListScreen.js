@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { View, FlatList } from "react-native";
 import { Fab, Icon, Box, Center, NativeBaseProvider } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
@@ -20,7 +20,7 @@ function MyListScreen() {
     <View style={styles.container}>
       <FlatList
         data={textList}
-        renderItem={({ item }) => <MyListItem text={item} />}
+        renderItem={({ item }) => <MyListItem text={item} screen={"private"} />}
         keyExtractor={(item) => item}
         windowSize={2}
       />
@@ -34,7 +34,7 @@ function MyListScreen() {
                 <Icon color="white" as={<AntDesign name="plus" />} size="sm" />
               }
             />
-          </Box>{" "}
+          </Box>
         </Center>
       </NativeBaseProvider>
     </View>
