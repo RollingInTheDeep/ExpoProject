@@ -1,6 +1,7 @@
-import React, { useState,  useEffect } from "react";
-import { TouchableOpacity, View, Text, FlatList} from "react-native";
+import React, { useState, useEffect } from "react";
+import { TouchableOpacity, View, Text, FlatList } from "react-native";
 import styles from "./style";
+import { CommonActions } from "@react-navigation/routers";
 
 const TextSelectionScreen = ({ route, navigation }) => {
   const text = route.params.text.match(/[^\r\n]+/g);
@@ -19,57 +20,62 @@ const TextSelectionScreen = ({ route, navigation }) => {
   }, []);
 
   const onPressItem = (index, type) => {
-    textList[index].isSelected= type;
+    textList[index].isSelected = type;
     return setTextList([...textList]);
-  }
+  };
   const returnTextList = () => {
-  let text = "";
-  textList.map((item) => {
-      if(item.isSelected){
+    let text = "";
+    textList.map((item) => {
+      if (item.isSelected) {
         text += item.text + "\n";
       }
     });
-  return text;
-}
-  const renderItem =
-    ({ item, index }) => {
+    navigation.dispatch(
+      CommonActions.navigate({
+        name: "AddItemStack",
+        params: { text: text },
+      })
+    );
+  };
+  const renderItem = ({ item, index }) => {
     /**textList.map((item) => {
       console.log("Id: " + item.isSelected + "Text: " + item.text );
     });**/
-    const backgroundColor = item.isSelected ? "#2f4f4f" : '#ffffff';
-    const color = item.isSelected ? 'white' : 'black';
+    const backgroundColor = item.isSelected ? "#2f4f4f" : "#ffffff";
+    const color = item.isSelected ? "white" : "black";
 
-      return (
-        <TextItem
-          item={item.text}
-          onPress={() => onPressItem(index, !item.isSelected)}
-          backgroundColor={{ backgroundColor }}
-          textColor={{ color }}
-        />
-      );
-    };
+    return (
+      <TextItem
+        item={item.text}
+        onPress={() => onPressItem(index, !item.isSelected)}
+        backgroundColor={{ backgroundColor }}
+        textColor={{ color }}
+      />
+    );
+  };
 
   return (
-    <View style = {styles.firstContainer}>
-     <FlatList
-      style = {styles.flatList}
-      data={textList}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.text}
-    />
-    <TouchableOpacity style = {styles.secondContainer} onPress = {returnTextList}>
-     <Text style={styles.text}> 다음 </Text>
-    </TouchableOpacity>
+    <View style={styles.firstContainer}>
+      <FlatList
+        style={styles.flatList}
+        data={textList}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.text}
+      />
+      <TouchableOpacity style={styles.secondContainer} onPress={returnTextList}>
+        <Text style={styles.text}> 다음 </Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const TextItem = ({ item, onPress, backgroundColor, textColor }) => (
-      <TouchableOpacity
-        style={(styles.container, backgroundColor)}
-        onPress={onPress}>
-        <Text style = {[styles.text, textColor]}>{item}</Text>
-      </TouchableOpacity>
+  <TouchableOpacity
+    style={(styles.container, backgroundColor)}
+    onPress={onPress}
+  >
+    <Text style={[styles.text, textColor]}>{item}</Text>
+  </TouchableOpacity>
 );
 
 export default TextSelectionScreen;

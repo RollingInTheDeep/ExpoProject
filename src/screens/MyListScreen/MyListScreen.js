@@ -2,10 +2,11 @@ import React from "react";
 import { View, FlatList } from "react-native";
 import { Fab, Icon, Box, Center, NativeBaseProvider } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
+import { CommonActions } from "@react-navigation/routers";
 
 import styles from "./styles";
 
-import MyListItem from "components/MyListItem";
+import MyListItem from "components/MyListItem/MyListItem";
 
 const textList = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do",
@@ -15,12 +16,14 @@ const textList = [
   "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
 ];
 
-function MyListScreen() {
+function MyListScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList
         data={textList}
-        renderItem={({ item }) => <MyListItem text={item} screen={"private"} />}
+        renderItem={({ item }) => (
+          <MyListItem text={item} screen={"private"} navigation={navigation} />
+        )}
         keyExtractor={(item) => item}
         windowSize={2}
       />
@@ -33,6 +36,11 @@ function MyListScreen() {
               icon={
                 <Icon color="white" as={<AntDesign name="plus" />} size="sm" />
               }
+              onPress={() => {
+                navigation.dispatch(
+                  CommonActions.navigate({ name: "AddItemStack" })
+                );
+              }}
             />
           </Box>
         </Center>

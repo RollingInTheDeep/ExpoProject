@@ -2,7 +2,9 @@ import "react-native-gesture-handler";
 import React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import BottomTabNavigation from "navigation/BottomTabNavigation";
+import { NavigationContainer } from "@react-navigation/native";
+
+import StackNavigator from "./navigation/StackNavigator";
 
 const styles = StyleSheet.create({
   wrap: {
@@ -18,10 +20,12 @@ const styles = StyleSheet.create({
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.wrap}>
-      <StatusBar style="auto" />
-      <BottomTabNavigation />
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={styles.wrap}>
+        <StatusBar style="auto" />
+        <StackNavigator />
+      </SafeAreaView>
+    </NavigationContainer>
   );
 };
 

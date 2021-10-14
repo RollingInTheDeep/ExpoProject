@@ -1,32 +1,31 @@
 import { StyleSheet } from "react-native";
 import Constants from "expo-constants";
 
-
 const styles = StyleSheet.create({
   screen: {
     paddingTop: Constants.statusBarHeight,
     alignItems: "center",
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "rgb(245, 245, 245)"
+    backgroundColor: "#F5F5F5",
   },
   header: {
-    flex : 0.2,
+    flex: 0.2,
     marginBottom: 20,
-    marginTop : 36,
+    marginTop: 36,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   all: {
     flex: 0.45,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   content: {
     justifyContent: "center",
     paddingHorizontal: 8,
     paddingVertical: 12,
-    flex : 1,
-    width: 320
+    flex: 1,
+    width: 320,
   },
   input: {
     borderWidth: 0.5,
@@ -39,35 +38,35 @@ const styles = StyleSheet.create({
   textRow: {
     flexDirection: "row",
     justifyContent: "center",
-    paddingHorizontal: 8
+    paddingHorizontal: 8,
   },
-  img:{
-     color: "#4A4A4A", 
-     marginBottom : 5 
+  img: {
+    color: "#4A4A4A",
+    marginBottom: 5,
   },
-  headerText:{
-    fontSize:28, 
-    fontWeight: "800", 
-    color: "#4A4A4A", 
-    textAlign: "center" 
+  headerText: {
+    fontSize: 28,
+    fontWeight: "800",
+    color: "#4A4A4A",
+    textAlign: "center",
   },
-  gradient:{
-    marginTop: 20 
+  gradient: {
+    marginTop: 20,
   },
-  text:{
-    fontSize : 20
+  text: {
+    fontSize: 20,
   },
-  leftText:{
-    color: "#484848", 
-    fontSize: 18, 
-    marginTop: 10 
+  leftText: {
+    color: "#484848",
+    fontSize: 18,
+    marginTop: 10,
   },
-  rigthText:{
-     color: "#ff69b4", 
-     fontSize: 18,
-      marginTop: 10, 
-      marginLeft : 8 
-  }
+  rigthText: {
+    color: "#ff69b4",
+    fontSize: 18,
+    marginTop: 10,
+    marginLeft: 8,
+  },
 });
 
 export default styles;

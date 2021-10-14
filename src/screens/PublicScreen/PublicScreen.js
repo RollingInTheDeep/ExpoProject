@@ -4,7 +4,7 @@ import { Menu, Pressable, Box, Center, NativeBaseProvider } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 
 import styles from "./styles";
-import MyListItem from "components/MyListItem";
+import MyListItem from "components/MyListItem/MyListItem";
 
 const textList = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do",
