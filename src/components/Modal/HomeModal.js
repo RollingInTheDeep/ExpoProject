@@ -1,8 +1,9 @@
 import Modal from 'react-native-modal';
 import React from 'react';
 import { View } from 'react-native'
-import { Dimensions, Platform,  StyleSheet,KeyboardAvoidingView } from 'react-native'
-import {Button, FormControl, Input, Center, NativeBaseProvider} from "native-base"
+import { Dimensions, Platform } from 'react-native'
+
+
 const deviceWidth = Dimensions.get("window").width;
 const deviceHeight =
   Platform.OS === "ios"

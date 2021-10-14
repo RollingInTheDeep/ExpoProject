@@ -2,23 +2,29 @@ import HomeItem from "./HomeItem.js/HomeItem";
 import styles from "./style";
 import * as React from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { View, FlatList,Dimensions, Platform,NativeModules, Text, TouchableOpacity  } from "react-native";
+import { View, Text, TouchableOpacity  } from "react-native";
 import { useState } from "react";
 import { Fab, Icon, Box, Center, NativeBaseProvider,
-  Image,   Modal, Button, KeyboardAvoidingView,
   FormControl,
   Input,
    } from "native-base";
-import { AntDesign, Entypo } from "@expo/vector-icons";
-import HomeModal from "./Modal/HomeModal";
+import { AntDesign } from "@expo/vector-icons";
+import HomeModal from "components/Modal/HomeModal";
 
 function HomeScreen(){
   const [showModal, setShowModal] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
 
-    const deleteItem = () =>{
+  const _onPressDelete = () => {
+    setShowButton(true);
+    setIsDelete(true);
+  }
+ 
+  const deleteItem = () =>{
     alert('삭제됩니다');
     setShowButton(false);
+    setIsDelete(false);
   }
    const onClose = () => {
     setShowModal(false);
@@ -30,7 +36,7 @@ function HomeScreen(){
              <Text style = {styles.deleteText}>삭제 완료</Text>
           </TouchableOpacity>) : null
         }
-        <HomeItem></HomeItem>     
+        <HomeItem isDelete={isDelete}></HomeItem>     
         <NativeBaseProvider>
         <Center flex={1} px="3">
           <Box position="relative" h={100} w="100%">
@@ -47,7 +53,7 @@ function HomeScreen(){
               position="absolute"
               size="sm"
               right={0}
-              onPress={() => setShowButton(true)}
+              onPress={_onPressDelete}
               icon={
                 <Icon color="white" as={<AntDesign name="minus" />} size="sm" />
               }
@@ -59,7 +65,9 @@ function HomeScreen(){
               <FormControl style = {styles.centeredView} >
               <Input style = {styles.form} multiline = {true}  />
               </FormControl>
-              <Button  style = {styles.fab} onPress={onClose}>완료 </Button>
+              <TouchableOpacity  style = {styles.btn} onPress={onClose}>
+               <Text style = {styles.btnText}>완료</Text>
+              </TouchableOpacity>
             </View>
             </KeyboardAwareScrollView>
             </HomeModal>
