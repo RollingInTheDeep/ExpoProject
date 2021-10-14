@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import { FlatList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState, useCallback } from "react";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import styles from "./style"
 
 
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}> 
-   <Text style={[styles.title,textColor]}>{item.title}</Text>
+const Item = React.memo(({ item, onPress, backgroundColor, textColor }) => {
+ return( 
+   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}> 
+   <Text style={[styles.title,textColor ]}>{item.title}</Text>
   </TouchableOpacity>
-);
+  );
+});
 
-const HomeItem = () => {
+const HomeItem = ({isDelete}) => {
+  const [selectedId, setSelectedId] = useState(null);
   const [data, setData] = React.useState([
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -70,25 +73,27 @@ const HomeItem = () => {
 ]) 
 
   
-  const onPressItem = (index, type) => {
-    data[index].isSelected= type;
+  const onPressItem = (index, type, id) => {
+    setSelectedId(id);
+    isDelete? data[index].isSelected= type : false;
     return setData([...data]);
   }
 
-  const renderItem = ({ item, index }) => {
-   
+  const renderItem = useCallback(({ item, index }) => {
+    
     const backgroundColor = item.isSelected ? "#2f4f4f" : '#ffffff';
     const color = item.isSelected ? 'white' : 'black';
-
+    
     return (
       <Item
         item={item}
-        onPress={() => onPressItem(index, !item.isSelected)}
+        onPress={() => onPressItem(index, !item.isSelected, item.id)}
         backgroundColor={{ backgroundColor }}
         textColor={{ color }}
       />
     );
-  };
+  }, [selectedId]
+  );
 
   return (
     <View style={styles.container}>
@@ -98,6 +103,7 @@ const HomeItem = () => {
         keyExtractor={(item) => item.id}
         numColumns={2}
         columnWrapperStyle={styles.row}
+        extraData = {selectedId}
       />
     </View>
   );

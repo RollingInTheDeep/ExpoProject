@@ -8,6 +8,16 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     padding: 8,
   },
+  deleteButton :{
+    flex: 0.7,
+    alignItems: "flex-end"
+  },
+  deleteText:{
+    margin : 3,
+    marginRight: 7,
+    fontSize: 20,
+    color: "red"
+  },
   fab: {
     position: "absolute",
     margin: 16,
@@ -16,6 +26,24 @@ const styles = StyleSheet.create({
     borderRadius: 15,     
     resizeMode:'cover',
     backgroundColor:'#bce7d6'
+  },
+  btn: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    borderRadius: 10,     
+    resizeMode:'cover',
+    backgroundColor:'#bce7d6',
+    width: 50,
+    height: 30,
+    alignItems: 'center',
+    justifyContent:'center'
+  },
+  btnText: {
+    fontWeight: 1,
+    fontSize: 18,
+    color: 'white'
   },
   keybordContainer: {
     flex: 1
