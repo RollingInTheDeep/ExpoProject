@@ -1,34 +1,20 @@
-import Modal from 'react-native-modal';
-import React from 'react';
-import { View } from 'react-native'
-import { Dimensions, Platform } from 'react-native'
-
+import React from "react";
+import { Dimensions, View } from "react-native";
+import Modal from "react-native-modal";
 
 const deviceWidth = Dimensions.get("window").width;
-const deviceHeight =
-  Platform.OS === "ios"
-    ? Dimensions.get("window").height
-    : require("react-native-extra-dimensions-android").get(
-        "REAL_WINDOW_HEIGHT"
-      );
-
+const deviceHeight = Dimensions.get("window").height;
 const HomeModal = ({ show, onClose, children }) => {
-  return( 
+  return (
+    <Modal
+      isVisible={show}
+      onBackdropPress={onClose}
+      deviceWidth={deviceWidth}
+      deviceHeight={deviceHeight}
+    >
+      <View style={{ flex: 0.7 }}>{children}</View>
+    </Modal>
+  );
+};
 
-  <Modal 
-  isVisible={show} 
-  onBackdropPress={onClose}
-  deviceWidth={deviceWidth}
-  deviceHeight={deviceHeight}
-  >
-    <View style={{ flex: 0.7 }}>
-      {children}
-    </View>   
-  </Modal>
-
- );
-}
-
-
-export default HomeModal
-
+export default HomeModal;

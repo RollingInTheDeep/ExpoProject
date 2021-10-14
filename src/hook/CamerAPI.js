@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
 import axios from "axios";
+import { CommonActions } from "@react-navigation/routers";
 
 const styles = StyleSheet.create({
   container: {
@@ -28,9 +29,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CameraAPI = () => {
-  const [text, setText] = useState("");
-  const [complete, setComplete] = useState(false);
+const CameraAPI = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const ref = useRef(null);
 
@@ -39,7 +38,7 @@ const CameraAPI = () => {
       const { status } = await Camera.requestPermissionsAsync();
       setHasPermission(status === "granted");
     })();
-  }, [text]);
+  }, []);
 
   if (hasPermission === null) {
     return <View />;
@@ -67,25 +66,18 @@ const CameraAPI = () => {
           ],
         }
       );
-      setText(data.responses[0].fullTextAnnotation.text);
+      navigation.dispatch(
+        CommonActions.navigate({
+          name: "TextSelection",
+          params: { text: data.responses[0].fullTextAnnotation.text },
+        })
+      );
     } catch (e) {
       console.log("error: ", e);
     }
   };
 
-  return text ? (
-    <View style={{ flex: 1 }}>
-      <Text
-        style={{
-          fontSize: 25,
-          textAlign: "center",
-          marginBottom: 16,
-        }}
-      >
-        {text}
-      </Text>
-    </View>
-  ) : (
+  return (
     <View style={styles.container}>
       <Camera style={styles.camera} type={Camera.Constants.Type.back} ref={ref}>
         <View style={styles.buttonContainer}>

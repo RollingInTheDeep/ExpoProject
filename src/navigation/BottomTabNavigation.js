@@ -1,78 +1,84 @@
+/* External dependencies */
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import HomeScreen from "screens/HomeScreen";
-import ProfileScreen from "screens/ProfileScreen";
+
+/* Internal dependencies */
+import { HomeScreen } from "../screens";
+import { MyListScreen } from "../screens";
+import { AddItemScreen } from "../screens";
+import { TextSelectionScreen } from "../screens";
+import { PublicScreen } from "../screens";
 import CameraAPI from "hook/CamerAPI";
 
 const Tab = createBottomTabNavigator();
+
+const CameraStack = createStackNavigator();
+function CameraStackScreen() {
+  return (
+    <CameraStack.Navigator>
+      <CameraStack.Screen name="재촬영" component={CameraAPI} />
+      <CameraStack.Screen
+        name="TextSelection"
+        component={TextSelectionScreen}
+      />
+    </CameraStack.Navigator>
+  );
+}
 
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen name="HomeStack" component={HomeScreen} />
+      <HomeStack.Screen name="MyListStack" component={MyListScreen} />
+      <HomeStack.Screen name="AddItemStack" component={AddItemScreen} />
     </HomeStack.Navigator>
-  );
-}
-
-const ProfileStack = createStackNavigator();
-function ProfileStackScreen() {
-  return (
-    <ProfileStack.Navigator>
-      <ProfileStack.Screen name="ProfileStack" component={ProfileScreen} />
-    </ProfileStack.Navigator>
   );
 }
 
 const BottomTabNavigation = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          tabBarActiveTintColor: "purple", // 탭 활성
-          tabBarInactiveTintColor: "gray", // 탭 비활성
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        tabBarActiveTintColor: "purple", // 탭 활성
+        tabBarInactiveTintColor: "gray", // 탭 비활성
+        headerShown: false,
+      }}
+    >
+      <Tab.Screen
+        name="Camera"
+        component={CameraStackScreen}
+        options={{
+          tabBarLabel: "Camera",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="camera" color={color} size={size} />
+          ),
         }}
-      >
-        <Tab.Screen
-          name="Camera"
-          component={CameraAPI}
-          options={{
-            tabBarLabel: "Camera",
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="camera" color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Home"
-          component={HomeStackScreen}
-          options={{
-            tabBarLabel: "Home",
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="home" color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={ProfileStackScreen}
-          options={{
-            tabBarLabel: "Profile",
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons
-                name="account"
-                color={color}
-                size={size}
-              />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+      />
+      <Tab.Screen
+        name="Home"
+        component={HomeStackScreen}
+        options={{
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Public"
+        component={PublicScreen}
+        options={{
+          tabBarLabel: "Public",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="heart" color={color} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 
