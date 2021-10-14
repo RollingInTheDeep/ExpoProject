@@ -6,7 +6,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import HomeScreen from "screens/HomeScreen";
 import ProfileScreen from "screens/ProfileScreen";
 import CameraAPI from "hook/CamerAPI";
-import Icon from "react-native-ionicons";
 
 const Tab = createBottomTabNavigator();
 
