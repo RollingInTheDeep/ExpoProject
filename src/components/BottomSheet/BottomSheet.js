@@ -1,20 +1,25 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
     View,
     Modal,
     Animated,
     TouchableWithoutFeedback,
     Dimensions,
-    PanResponder, TouchableOpacity
+    PanResponder, TouchableOpacity, FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import HomeItem from "components/HomeItem/HomeItem"
 import styles from "./style.js";
+import useFolder from "../../hooks/useFolder"
 
 const BottomSheet = (props) => {
     const { modalVisible, setModalVisible } = props;
+    const { folderList, onCreate, onRemove } = useFolder({ userId: 3 });
     const screenHeight = Dimensions.get("screen").height;
+    const [change, setChange] = useState(false);
+    const [selectedItem,setSelectedItem] = useState([]);
     const panY = useRef(new Animated.Value(screenHeight)).current;
+
     const translateY = panY.interpolate({
         inputRange: [-1, 0, 1],
         outputRange: [0, 0, 1],
@@ -57,10 +62,16 @@ const BottomSheet = (props) => {
         closeBottomSheet.start(()=>{
             setModalVisible(false);
         })
-    }
+    }    
     const onPress = () => {
       alert("선택하신 폴더에 저장됩니다.");
       setModalVisible(false);
+    }
+    const getSelectedItem = (item) =>{
+        setSelectedItem(item);
+        console.log(selectedItem);
+        //selectedItem -> 선택한 아이템 아이디 값을 모아놓은 리스트
+        change ? setChange(false) : setChange(true);
     }
 return (
         <Modal
@@ -79,7 +90,21 @@ return (
                           <TouchableOpacity activeOpacity={0.8} style = {styles.btn} onPress = {onPress}>
                               <Icon name="check" size={40} color="#2f4f4f" style = {styles.text} />
                           </TouchableOpacity>
-                    <HomeItem style = {styles.item}/> 
+                     <FlatList
+                        data={folderList}
+                        renderItem={({ item}) => {
+                            const backgroundColor = selectedItem.includes(item.folderId) ? "#2f4f4f" : '#ffffff';
+                            const color = selectedItem.includes(item.folderId)?'white' : 'black';
+                            
+                            return(<HomeItem item={item} backgroundColor={{ backgroundColor }} textColor={{ color }} 
+                              selectedItem = {selectedItem} getSelectedItem = {getSelectedItem} 
+                              screenType = "AddItemScreen"/>);
+                        }}
+                        keyExtractor={(item, index) => item + index}
+                        numColumns={2}
+                        extraData={change}
+                        columnWrapperStyle={styles.row}
+                        />
                 </Animated.View>
             </View>
         </Modal>
