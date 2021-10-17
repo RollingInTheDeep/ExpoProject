@@ -42,8 +42,10 @@ const styles = StyleSheet.create({
       flex:1,
       alignContent:'center',
       alignItems:'center'
+    },
+    row: {
+      justifyContent: "space-between",
     }
- 
 })
 
 export default styles;

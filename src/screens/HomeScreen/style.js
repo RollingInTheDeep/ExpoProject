@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   deleteButton: {
-    flex: 0.9,
     alignItems: "flex-end",
   },
   deleteText: {
@@ -100,7 +99,7 @@ const styles = StyleSheet.create({
   },
   row: {
     justifyContent: "space-between",
-  },
+  }
 });
 
 export default styles;

@@ -1,5 +1,5 @@
 /* External dependencies */
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import {
   Fab,
   Icon,
@@ -21,11 +21,13 @@ import HomeItem from "components/HomeItem/HomeItem";
 import { createFoldertAPI } from "../../api/folderAPI";
 import useFolder from "../../hooks/useFolder";
 
-function HomeScreen({ navigation }) {
+const HomeScreen = ({ navigation })=> {
   const [showModal, setShowModal] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [change, setChange] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [text, setText] = useState(null);
+  const [selectedItem,setSelectedItem] = useState([]);
   const { folderList, onCreate, onRemove } = useFolder({ userId: 3 });
 
   const _onPressDelete = () => {
@@ -33,6 +35,12 @@ function HomeScreen({ navigation }) {
     setIsDelete(true);
   };
 
+  const getSelectedItem = (item) =>{
+    setSelectedItem(item);
+    console.log(selectedItem);
+    //selectedItem -> 선택한 아이템 아이디 값을 모아놓은 리스트
+    change ? setChange(false) : setChange(true);
+  }
   const deleteItem = () => {
     alert("삭제됩니다");
     setShowButton(false);
@@ -56,7 +64,15 @@ function HomeScreen({ navigation }) {
   //     onRemove(folderId);
   //   });
   // };
+  const renderItem = useCallback(({item}) => {
+    const backgroundColor = selectedItem.includes(item.folderId) ? "#2f4f4f" : '#ffffff';
+    const color = selectedItem.includes(item.folderId)?'white' : 'black';
+    
+    return(<HomeItem item={item} backgroundColor={{ backgroundColor }} textColor={{ color }} 
+      selectedItem = {selectedItem} getSelectedItem = {getSelectedItem} 
+       navigation={navigation} screenType = "HomeScreen"  isDelete = {isDelete}/>);
 
+  }, [getSelectedItem]);
   return (
     <View style={styles.container}>
       {showButton ? (
@@ -68,14 +84,12 @@ function HomeScreen({ navigation }) {
           <Text style={styles.deleteText}>삭제 완료</Text>
         </TouchableOpacity>
       ) : null}
-
       <NativeBaseProvider>
         <FlatList
           data={folderList}
-          renderItem={({ item }) => (
-            <HomeItem item={item} navigation={navigation} />
-          )}
+          renderItem={renderItem}
           keyExtractor={(item, index) => item + index}
+          extraData={change}
           numColumns={2}
           columnWrapperStyle={styles.row}
         />
@@ -96,7 +110,7 @@ function HomeScreen({ navigation }) {
               size="sm"
               bottom={-8}
               right={0}
-              onPress={_onPressDelete}
+              onPress={() =>_onPressDelete()}
               icon={
                 <Icon color="white" as={<AntDesign name="minus" />} size="sm" />
               }
