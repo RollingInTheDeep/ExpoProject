@@ -5,7 +5,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-around",
     padding: 10,
+<<<<<<< HEAD
     backgroundColor: "#fff",
+=======
+    backgroundColor: "#fff"
+>>>>>>> fc8ee5b ([#7] 레이아웃 배치 수정)
   },
   deleteButton: {
     flex: 0.9,

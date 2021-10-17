@@ -4,7 +4,12 @@ import styles from "./style";
 import { CommonActions } from "@react-navigation/routers";
 
 const TextSelectionScreen = ({ route, navigation }) => {
-  const text = route.params.text.match(/[^\r\n]+/g);
+  let allText = route.params.text.split(/[\.|\:|\!|\?][\n|\r|\r\n|\s]*(?=[\s가-힣a-zA-Z])+(?![((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+?(\/|\/([\w#!:.?+=&%@!\-\/])]))/gm);
+  const text = 
+  allText.filter(
+        (element, i) => element !== undefined
+      );
+  //.match(/[^\r\n]+/g);
   const [textList, setTextList] = useState([]);
 
   let temp = [];
