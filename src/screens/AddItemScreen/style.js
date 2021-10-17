@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   },
   editText: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#fff",
     borderWidth: 4,
     padding: 10,
     borderStyle: "solid",
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   editTitle: {
     flex: 0.1,
     borderBottomWidth: 0,
+    backgroundColor: "#fff",
     borderStyle: "solid",
     borderColor: "#a4c07e",
     borderWidth: 4,

@@ -33,7 +33,7 @@ const TextSelectionScreen = ({ route, navigation }) => {
     navigation.dispatch(
       CommonActions.navigate({
         name: "AddItemStack",
-        params: { text: text },
+        params: { text: text, screenType: "private" },
       })
     );
   };
@@ -63,7 +63,7 @@ const TextSelectionScreen = ({ route, navigation }) => {
         keyExtractor={(item) => item.text}
       />
       <TouchableOpacity style={styles.secondContainer} onPress={returnTextList}>
-        <Text style={styles.text}> 다음 </Text>
+        <Text style={styles.text}>다음</Text>
       </TouchableOpacity>
     </View>
   );
@@ -71,7 +71,7 @@ const TextSelectionScreen = ({ route, navigation }) => {
 
 const TextItem = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity
-    style={(styles.container, backgroundColor)}
+    style={[styles.container, backgroundColor]}
     onPress={onPress}
   >
     <Text style={[styles.text, textColor]}>{item}</Text>

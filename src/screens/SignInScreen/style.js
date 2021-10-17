@@ -5,17 +5,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor : "#fff",
     padding: 20,
   },
   introScreen: {
-    marginTop: 20,
+    marginTop: 10,
     flex: 0.2,
   },
   logo: {
     flex: 1,
-    height: 360,
-    width: 300,
-    marginLeft: 10,
+    height: 300,
+    minWidth: '100%',
     resizeMode: "cover",
   },
   editText: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     flex: 1,
-    marginTop: 35,
+    marginTop: 5,
   },
   gradient: {
     marginTop: 30,

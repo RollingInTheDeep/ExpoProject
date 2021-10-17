@@ -2,8 +2,7 @@ import { StyleSheet, StatusBar } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 16,
-    marginTop: StatusBar.currentHeight || 0,
+    flex: 16
   },
   item: {
     padding: 20,

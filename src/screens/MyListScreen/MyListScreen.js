@@ -37,7 +37,7 @@ function MyListScreen({ navigation }) {
                 <Icon color="white" as={<AntDesign name="plus" />} size="sm" />
               }
               onPress={() => {
-                navigation.dispatch(
+                  navigation.dispatch(
                   CommonActions.navigate({ name: "AddItemStack" })
                 );
               }}

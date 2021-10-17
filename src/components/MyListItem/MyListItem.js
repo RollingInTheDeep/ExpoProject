@@ -13,7 +13,11 @@ function MyListItem({ text, screen, navigation }) {
     <View>
       <Card>
         <View style={styles.container}>
+          <View style={styles.container1}>
+          <Text style={styles.title}>제목입니당</Text>
           <CardButton screen={screen} navigation={navigation} />
+          </View>
+          <View style={styles.container2}>
           <ReadMore
             numberOfLines={3}
             renderTruncatedFooter={renderTruncatedFooter}
@@ -21,6 +25,7 @@ function MyListItem({ text, screen, navigation }) {
           >
             <Text style={styles.paragraph}>{text}</Text>
           </ReadMore>
+          </View>
         </View>
       </Card>
     </View>

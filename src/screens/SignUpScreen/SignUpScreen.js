@@ -5,8 +5,9 @@ import GradientButton from "react-native-gradient-buttons";
 import { FontAwesome } from "react-native-vector-icons";
 import { Card } from 'react-native-paper';
 import styles from "./style"
+import { CommonActions } from "@react-navigation/routers";
 
-function SignUpScreen(){
+function SignUpScreen({ navigation }){
   return(
   <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
   <View style = {styles.screen}>
@@ -43,6 +44,11 @@ function SignUpScreen(){
               style={styles.gradient}
               textStyle={styles.text}
               text="SIGN UP"
+              onPressAction={() => {
+                navigation.dispatch(
+                  CommonActions.reset({ index: 1, routes: [{ name: "SignIn" }] })
+                );
+              }}
               height={50}
               violetPink
               impact
@@ -54,7 +60,9 @@ function SignUpScreen(){
             <Text style={styles.leftText}>
               이미 계정이 있으신가요?
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+                navigation.dispatch(CommonActions.navigate({ name: "SignIn" }));
+              }}>
             <Text style={styles.rigthText}>로그인하러가기</Text>
             </TouchableOpacity>
           </View>
