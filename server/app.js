@@ -1,13 +1,42 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const app = express();
-const api = require("./routes/index");
-const { NativeModules } = require("react-native");
+// const { NativeModules } = require("react-native");
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var logger = require("morgan");
 
-app.use(bodyParser.json());
-app.use("/api", api);
+var indexRouter = require("./routes/index");
+var usersRouter = require("./routes/user");
 
-const port = process.env.PORT || 3001;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+// let corsOptions = {
+//   origin: " exp://192.168.50.20:19000",
+//   credentials: true,
+// };
 
-NativeModules.exports = app;
+// const cors = require("cors");
+var app = express();
+// app.use(cors(corsOptions));
+
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use("/", indexRouter);
+app.use("/api/user", usersRouter);
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render("error");
+});
+
+module.exports = app;

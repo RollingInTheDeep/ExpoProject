@@ -10,7 +10,7 @@ import { MyListScreen } from "../screens";
 import { AddItemScreen } from "../screens";
 import { TextSelectionScreen } from "../screens";
 import { PublicScreen } from "../screens";
-import CameraAPI from "hook/CamerAPI";
+import CameraAPI from "hooks/CamerAPI";
 
 const Tab = createBottomTabNavigator();
 
