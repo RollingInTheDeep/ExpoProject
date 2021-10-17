@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   btn: {
     alignItems: "center",
     justifyContent: "center",
-    padding: 24,
+    padding: 15,
     backgroundColor: "#6d9773",
     flex:1,
   },

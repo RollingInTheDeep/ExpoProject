@@ -2,9 +2,9 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    padding: 10,
+    marginVertical: 20,
+    marginHorizontal: 10,
     marginLeft: 13,
     borderWidth: 3,
     borderRadius: 5,
@@ -15,14 +15,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 3,
     elevation: 2,
-    justifyContent: "center",
-    alignItems: "center",
-    margin: 11,
-    width: 300,
+    justifyContent: "flex-start",
+    alignItems: "stretch",
+    alignContent:"flex-start",
   },
   text: {
-    fontSize: 20,
+    fontSize: 19,
     textAlign: "center",
+    color: "#000",
   },
   firstContainer: {
     flex: 1,
@@ -30,12 +30,14 @@ const styles = StyleSheet.create({
   },
   secondContainer: {
     flex: 0.08,
-    alignItems: "center",
+    textAlign: "center",
     alignContent: "center",
-    backgroundColor: "#000005",
+    justifyContent: "center",
+    backgroundColor: "#fff"
   },
   flatList: {
-    flex: 0.9,
+    flex: 2,
+    padding: 10,
   },
 });
 

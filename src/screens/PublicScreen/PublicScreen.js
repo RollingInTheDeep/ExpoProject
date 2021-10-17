@@ -28,7 +28,7 @@ function MyListScreen() {
           <Box position="relative" h={100} w="100%" alignItems="flex-end">
             <Menu
               w="190"
-              closeOnSelect={false}
+              closeOnSelect={true}
               onOpen={() => console.log("opened")}
               onClose={() => console.log("closed")}
               trigger={(triggerProps) => {

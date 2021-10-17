@@ -48,12 +48,13 @@ function HomeScreen({ navigation }) {
       ) : null}
       <HomeItem isDelete={isDelete} navigation={navigation}></HomeItem>
       <NativeBaseProvider>
-        <Center flex={1} px="3">
-          <Box position="relative" h={100} w="100%">
+        <Center flex={1} px="2">
+          <Box position="relative" w="100%">
             <Fab
               position="absolute"
               size="sm"
               right={65}
+              bottom={-8}
               onPress={() => setShowModal(true)}
               icon={
                 <Icon color="white" as={<AntDesign name="plus" />} size="sm" />
@@ -62,6 +63,7 @@ function HomeScreen({ navigation }) {
             <Fab
               position="absolute"
               size="sm"
+              bottom={-8}
               right={0}
               onPress={_onPressDelete}
               icon={

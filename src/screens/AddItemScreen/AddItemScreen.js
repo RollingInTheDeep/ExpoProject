@@ -9,16 +9,20 @@ import styles from "./style.js";
 import AddButton from "components/AddButton/AddButton";
 import BottomSheet from "components/BottomSheet/BottomSheet";
 
-function AddItemScreen(screenType) {
+function AddItemScreen({ route, navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const pressButton = () => {
     setModalVisible(true);
   };
+  const screenType = route.params.screenType;
+  const text = route.params.text;
+
+  
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        {screenType === "PublicScreen" ? (
+        {screenType == "PublicScreen" ? (
           <TextInput
             style={styles.editTitle}
             maxLength="15"
@@ -28,6 +32,7 @@ function AddItemScreen(screenType) {
         <TextInput
           style={styles.editText}
           multiline="true"
+          value = {text}
           placeholder="텍스트를 입력해주세요"
         />
         <View style={styles.caution} />

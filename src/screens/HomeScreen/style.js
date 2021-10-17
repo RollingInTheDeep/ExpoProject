@@ -4,10 +4,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-around",
-    padding: 8,
+    padding: 10,
+    backgroundColor: "#fff"
   },
   deleteButton: {
-    flex: 0.7,
+    flex: 0.9,
     alignItems: "flex-end",
   },
   deleteText: {

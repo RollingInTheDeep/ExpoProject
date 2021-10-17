@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   all: {
-    flex: 0.45,
+    flex: 0.5,
     justifyContent: "center",
   },
   content: {
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     flex: 1,
     width: 320,
+    height: '100%',
   },
   input: {
     borderWidth: 0.5,
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
   },
   gradient: {
     marginTop: 20,
+    marginBottom: 10,
   },
   text: {
     fontSize: 20,
