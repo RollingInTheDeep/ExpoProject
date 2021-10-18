@@ -22,7 +22,7 @@ function AddItemScreen({ route, navigation }) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        {screenType == "PublicScreen" ? (
+        {screenType == "public" ? (
           <TextInput
             style={styles.editTitle}
             maxLength="15"

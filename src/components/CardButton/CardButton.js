@@ -14,7 +14,10 @@ function CardButton({ screen, navigation }) {
         size={24}
         color="black"
         onPress={() => {
-          navigation.dispatch(CommonActions.navigate({ name: "AddItemStack" }));
+          navigation.dispatch(CommonActions.navigate({ 
+            name: "AddItemStack" ,
+             params: { screenType: screen }}
+          ));
         }}
       />
       <MaterialIcons
