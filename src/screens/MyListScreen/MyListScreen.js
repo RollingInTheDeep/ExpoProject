@@ -11,7 +11,7 @@ import MyListItem from "components/MyListItem/MyListItem";
 import usePrivate from "../../hooks/usePrivate";
 
 function MyListScreen({ navigation }) {
-  const privateArticleList = usePrivate();
+  const privateArticleList = usePrivate({ folderId: 1 });
 
   return (
     <View style={styles.container}>

@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 /* Internal dependencies */
 import { getPrivateArticleAPI } from "../api/privateAPI";
 
-function usePrivate() {
+function usePrivate({ folderId }) {
   const [privateArticleList, setPrivateArticleList] = useState([]);
 
   useEffect(() => {
-    getPrivateArticleAPI({ folderId: 1 }).then((result) => {
+    getPrivateArticleAPI({ folderId }).then((result) => {
       setPrivateArticleList(result.data);
     });
   }, []);

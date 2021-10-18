@@ -9,6 +9,16 @@ async function getFolder({ userId }) {
   return rows;
 }
 
+//폴더 추가
+async function addFolder({ userId, name }) {
+  const query = mysql.format("INSERT INTO Folder SET ?", {
+    userId,
+    name,
+  });
+  let [rows, fields] = await connection.query(query);
+  return rows;
+}
+
 //Private 글 조회
 async function getPrivateArticle({ folderId }) {
   let [rows, fields] = await connection.query(
@@ -19,5 +29,6 @@ async function getPrivateArticle({ folderId }) {
 
 module.exports = {
   getFolder,
+  addFolder,
   getPrivateArticle,
 };
