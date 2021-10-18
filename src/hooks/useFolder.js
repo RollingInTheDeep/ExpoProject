@@ -4,15 +4,28 @@ import { useState, useEffect } from "react";
 /* Internal dependencies */
 import { getFolderAPI } from "../api/folderAPI";
 
-function useFolder() {
+function useFolder({ userId }) {
   const [folderList, setFolderList] = useState([]);
 
   useEffect(() => {
-    getFolderAPI({ userId: 3 }).then((result) => {
+    handleFolderList();
+  }, []);
+
+  const handleFolderList = function () {
+    getFolderAPI({ userId }).then((result) => {
       setFolderList(result.data);
     });
-  }, []);
-  return folderList;
+  };
+
+  function onCreate() {
+    handleFolderList();
+  }
+
+  function onRemove(folderId) {
+    setFolderList(folderList.filter((folder) => folder.folderId !== folderId));
+  }
+
+  return { folderList, onCreate, onRemove };
 }
 
 export default useFolder;

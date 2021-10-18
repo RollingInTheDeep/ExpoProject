@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-around",
     padding: 10,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   deleteButton: {
     flex: 0.9,
@@ -97,6 +97,9 @@ const styles = StyleSheet.create({
     color: "#bdcebe",
     fontWeight: "bold",
     fontSize: 26,
+  },
+  row: {
+    justifyContent: "space-between",
   },
 });
 

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* External dependencies */
+import React, { useState, useEffect } from "react";
 import {
   Fab,
   Icon,
@@ -7,19 +8,25 @@ import {
   NativeBaseProvider,
   FormControl,
   Input,
+  FlatList,
 } from "native-base";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { View, Text, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
+/* Internal dependencies */
+import styles from "./style";
 import HomeModal from "components/Modal/HomeModal";
 import HomeItem from "components/HomeItem/HomeItem";
-import styles from "./style";
+import { createFoldertAPI } from "../../api/folderAPI";
+import useFolder from "../../hooks/useFolder";
 
 function HomeScreen({ navigation }) {
   const [showModal, setShowModal] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+  const [text, setText] = useState(null);
+  const { folderList, onCreate, onRemove } = useFolder({ userId: 3 });
 
   const _onPressDelete = () => {
     setShowButton(true);
@@ -31,9 +38,24 @@ function HomeScreen({ navigation }) {
     setShowButton(false);
     setIsDelete(false);
   };
-  const onClose = () => {
+
+  const createFolder = () => {
     setShowModal(false);
+    {
+      text
+        ? (createFoldertAPI({ userId: 3, name: text }).then((result) => {
+            onCreate();
+          }),
+          setText(null))
+        : null;
+    }
   };
+
+  // const removeFolder = () => {
+  //   removeFolderAPI({ folderId }).then(result => {
+  //     onRemove(folderId);
+  //   });
+  // };
 
   return (
     <View style={styles.container}>
@@ -46,8 +68,17 @@ function HomeScreen({ navigation }) {
           <Text style={styles.deleteText}>삭제 완료</Text>
         </TouchableOpacity>
       ) : null}
-      <HomeItem isDelete={isDelete} navigation={navigation}></HomeItem>
+
       <NativeBaseProvider>
+        <FlatList
+          data={folderList}
+          renderItem={({ item }) => (
+            <HomeItem item={item} navigation={navigation} />
+          )}
+          keyExtractor={(item, index) => item + index}
+          numColumns={2}
+          columnWrapperStyle={styles.row}
+        />
         <Center flex={1} px="2">
           <Box position="relative" w="100%">
             <Fab
@@ -70,14 +101,18 @@ function HomeScreen({ navigation }) {
                 <Icon color="white" as={<AntDesign name="minus" />} size="sm" />
               }
             />
-            <HomeModal show={showModal} onClose={onClose}>
+            <HomeModal show={showModal} onClose={createFolder}>
               <KeyboardAwareScrollView style={styles.keybordContainer}>
                 <View style={styles.modalView}>
                   <Text style={styles.modalText}> 해쉬 태그 입력란</Text>
                   <FormControl style={styles.centeredView}>
-                    <Input style={styles.form} multiline={true} />
+                    <Input
+                      style={styles.form}
+                      onChangeText={(text) => setText(text)}
+                      multiline={true}
+                    />
                   </FormControl>
-                  <TouchableOpacity style={styles.btn} onPress={onClose}>
+                  <TouchableOpacity style={styles.btn} onPress={createFolder}>
                     <Text style={styles.btnText}>완료</Text>
                   </TouchableOpacity>
                 </View>
