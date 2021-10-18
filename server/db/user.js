@@ -9,6 +9,15 @@ async function getFolder({ userId }) {
   return rows;
 }
 
+//Private 글 조회
+async function getPrivateArticle({ folderId }) {
+  let [rows, fields] = await connection.query(
+    `SELECT content FROM Private WHERE folderId=${folderId}`
+  );
+  return rows;
+}
+
 module.exports = {
   getFolder,
+  getPrivateArticle,
 };

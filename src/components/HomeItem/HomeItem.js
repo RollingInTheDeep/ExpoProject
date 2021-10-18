@@ -33,7 +33,11 @@ const HomeItem = ({ isDelete, navigation }) => {
       return (
         <Item
           item={item}
-          onPress={() => {}}
+          onPress={() => {
+            navigation.dispatch(
+              CommonActions.navigate({ name: "MyListStack" })
+            );
+          }}
           // backgroundColor={{ backgroundColor }}
           // textColor={{ color }}
         />

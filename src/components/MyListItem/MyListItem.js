@@ -14,17 +14,17 @@ function MyListItem({ text, screen, navigation }) {
       <Card>
         <View style={styles.container}>
           <View style={styles.container1}>
-          <Text style={styles.title}>제목입니당</Text>
-          <CardButton screen={screen} navigation={navigation} />
+            <Text style={styles.title}>제목입니당</Text>
+            <CardButton screen={screen} navigation={navigation} />
           </View>
           <View style={styles.container2}>
-          <ReadMore
-            numberOfLines={3}
-            renderTruncatedFooter={renderTruncatedFooter}
-            renderRevealedFooter={renderRevealedFooter}
-          >
-            <Text style={styles.paragraph}>{text}</Text>
-          </ReadMore>
+            <ReadMore
+              numberOfLines={3}
+              renderTruncatedFooter={renderTruncatedFooter}
+              renderRevealedFooter={renderRevealedFooter}
+            >
+              <Text style={styles.paragraph}>{text}</Text>
+            </ReadMore>
           </View>
         </View>
       </Card>

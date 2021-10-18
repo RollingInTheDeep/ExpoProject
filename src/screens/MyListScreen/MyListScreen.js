@@ -1,28 +1,28 @@
+/* External dependencies */
 import React from "react";
 import { View, FlatList } from "react-native";
 import { Fab, Icon, Box, Center, NativeBaseProvider } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 import { CommonActions } from "@react-navigation/routers";
 
+/* Internal dependencies */
 import styles from "./styles";
-
 import MyListItem from "components/MyListItem/MyListItem";
-
-const textList = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do",
-  "minim veniam, quis nostrud exercitation ullamco laboris nisi ut",
-  "aliquip ex ea commodo consequat. Duis aute irure dolor in",
-  "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla",
-  "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-];
+import usePrivate from "../../hooks/usePrivate";
 
 function MyListScreen({ navigation }) {
+  const privateArticleList = usePrivate();
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={textList}
+        data={privateArticleList}
         renderItem={({ item }) => (
-          <MyListItem text={item} screen={"private"} navigation={navigation} />
+          <MyListItem
+            text={item.content}
+            screen={"private"}
+            navigation={navigation}
+          />
         )}
         keyExtractor={(item) => item}
         windowSize={2}
@@ -37,7 +37,7 @@ function MyListScreen({ navigation }) {
                 <Icon color="white" as={<AntDesign name="plus" />} size="sm" />
               }
               onPress={() => {
-                  navigation.dispatch(
+                navigation.dispatch(
                   CommonActions.navigate({ name: "AddItemStack" })
                 );
               }}
