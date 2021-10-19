@@ -8,7 +8,7 @@ import CardButton from "components/CardButton/CardButton";
 /* Internal dependencies */
 import styles from "./styles";
 
-function MyListItem({ text, screen, navigation }) {
+function ArticleItem({ text, screen, navigation }) {
   return (
     <View>
       <Card>
@@ -49,4 +49,4 @@ const renderRevealedFooter = (handlePress) => {
 };
 
 // scroll 움직일 때마다 windowSize에 해당하는 모든 Item 컴포넌트를 불필요하게 재렌더링 하는 것 방지
-export default memo(MyListItem);
+export default memo(ArticleItem);
