@@ -1,4 +1,4 @@
-export { default as MyListScreen } from "./MyListScreen";
+export { default as PrivateScreen } from "./PrivateScreen";
 export { default as AddItemScreen } from "./AddItemScreen";
 export { default as HomeScreen } from "./HomeScreen";
 export { default as PublicScreen } from "./PublicScreen";

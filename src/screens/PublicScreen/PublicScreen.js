@@ -1,10 +1,12 @@
+/* External dependencies */
 import React from "react";
 import { View, FlatList } from "react-native";
 import { Menu, Pressable, Box, Center, NativeBaseProvider } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 
+/* Internal dependencies */
 import styles from "./styles";
-import MyListItem from "components/MyListItem/MyListItem";
+import ArticleItem from "components/ArticleItem/ArticleItem";
 
 const textList = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do",
@@ -14,13 +16,13 @@ const textList = [
   "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
 ];
 
-function MyListScreen() {
+function PublicScreen() {
   return (
     <View style={styles.container}>
       <FlatList
         data={textList}
-        renderItem={({ item }) => <MyListItem text={item} screen={"public"} />}
-        keyExtractor={(item) => item}
+        renderItem={({ item }) => <ArticleItem text={item} screen={"public"} />}
+        keyExtractor={(item, index) => item + index}
         windowSize={2}
       />
       <NativeBaseProvider>
@@ -62,4 +64,4 @@ function MyListScreen() {
   );
 }
 
-export default MyListScreen;
+export default PublicScreen;

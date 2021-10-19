@@ -7,10 +7,10 @@ import { CommonActions } from "@react-navigation/routers";
 
 /* Internal dependencies */
 import styles from "./styles";
-import MyListItem from "components/MyListItem/MyListItem";
-import usePrivate from "../../hooks/usePrivate";
+import ArticleItem from "components/ArticleItem/ArticleItem";
+import usePrivate from "hooks/usePrivate";
 
-function MyListScreen({ navigation }) {
+function PrivateScreen({ navigation }) {
   const privateArticleList = usePrivate({ folderId: 1 });
 
   return (
@@ -18,13 +18,13 @@ function MyListScreen({ navigation }) {
       <FlatList
         data={privateArticleList}
         renderItem={({ item }) => (
-          <MyListItem
+          <ArticleItem
             text={item.content}
             screen={"private"}
             navigation={navigation}
           />
         )}
-        keyExtractor={(item) => item}
+        keyExtractor={(item, index) => item + index}
         windowSize={2}
       />
       <NativeBaseProvider>
@@ -49,4 +49,4 @@ function MyListScreen({ navigation }) {
   );
 }
 
-export default MyListScreen;
+export default PrivateScreen;

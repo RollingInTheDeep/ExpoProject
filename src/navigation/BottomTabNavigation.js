@@ -5,11 +5,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 /* Internal dependencies */
-import { HomeScreen } from "../screens";
-import { MyListScreen } from "../screens";
-import { AddItemScreen } from "../screens";
-import { TextSelectionScreen } from "../screens";
-import { PublicScreen } from "../screens";
+import { HomeScreen } from "screens";
+import { PrivateScreen } from "screens";
+import { AddItemScreen } from "screens";
+import { TextSelectionScreen } from "screens";
+import { PublicScreen } from "screens";
 import CameraAPI from "hooks/CamerAPI";
 
 const Tab = createBottomTabNavigator();
@@ -32,7 +32,7 @@ function HomeStackScreen() {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen name="HomeStack" component={HomeScreen} />
-      <HomeStack.Screen name="MyListStack" component={MyListScreen} />
+      <HomeStack.Screen name="PrivateStack" component={PrivateScreen} />
       <HomeStack.Screen name="AddItemStack" component={AddItemScreen} />
     </HomeStack.Navigator>
   );

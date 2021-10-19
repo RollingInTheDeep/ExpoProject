@@ -1,7 +1,6 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import { CommonActions } from "@react-navigation/routers";
-import useFolder from "../../hooks/useFolder";
 import styles from "./style";
 
 const HomeItem = ({ item, navigation }) => {
@@ -9,7 +8,7 @@ const HomeItem = ({ item, navigation }) => {
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
-          navigation.dispatch(CommonActions.navigate({ name: "MyListStack" }));
+          navigation.dispatch(CommonActions.navigate({ name: "PrivateStack" }));
         }}
         style={[styles.item]}
       >
