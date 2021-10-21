@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import { Text, View } from "react-native";
 import ReadMore from "react-native-read-more-text";
 import { Card } from "react-native-paper";
-import CardButton from "components/CardButton/CardButton";
+import CardButton from "../CardButton/CardButton";
 
 /* Internal dependencies */
 import styles from "./styles";

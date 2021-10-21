@@ -6,7 +6,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 /* Internal dependencies */
 import styles from "./styles";
-import ArticleItem from "components/ArticleItem/ArticleItem";
+import ArticleItem from "../../components/ArticleItem/ArticleItem";
 
 const textList = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do",
@@ -16,12 +16,14 @@ const textList = [
   "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
 ];
 
-function PublicScreen() {
+function PublicScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList
         data={textList}
-        renderItem={({ item }) => <ArticleItem text={item} screen={"public"} />}
+        renderItem={({ item }) => (
+          <ArticleItem text={item} screen={"public"} navigation={navigation} />
+        )}
         keyExtractor={(item, index) => item + index}
         windowSize={2}
       />

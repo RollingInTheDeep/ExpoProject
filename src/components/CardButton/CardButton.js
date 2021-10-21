@@ -14,7 +14,21 @@ function CardButton({ screen, navigation }) {
         size={24}
         color="black"
         onPress={() => {
-          navigation.dispatch(CommonActions.navigate({ name: "AddItemStack" }));
+          {
+            screen == "private"
+              ? navigation.dispatch(
+                  CommonActions.navigate({
+                    name: "AddItemStack",
+                    params: { screenType: "private" },
+                  })
+                )
+              : navigation.dispatch(
+                  CommonActions.navigate({
+                    name: "AddItemStack",
+                    params: { screenType: "public" },
+                  })
+                );
+          }
         }}
       />
       <MaterialIcons
@@ -31,7 +45,10 @@ function CardButton({ screen, navigation }) {
           color="black"
           onPress={() => {
             navigation.dispatch(
-              CommonActions.navigate({ name: "AddItemStack" })
+              CommonActions.navigate({
+                name: "AddItemStack",
+                params: { screenType: "public" },
+              })
             );
           }}
         />

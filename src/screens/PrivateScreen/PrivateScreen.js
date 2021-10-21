@@ -7,8 +7,9 @@ import { CommonActions } from "@react-navigation/routers";
 
 /* Internal dependencies */
 import styles from "./styles";
-import ArticleItem from "components/ArticleItem/ArticleItem";
-import usePrivate from "hooks/usePrivate";
+
+import ArticleItem from "../../components/ArticleItem/ArticleItem";
+import usePrivate from "../../hooks/usePrivate";
 
 function PrivateScreen({ navigation }) {
   const privateArticleList = usePrivate({ folderId: 1 });
@@ -38,7 +39,10 @@ function PrivateScreen({ navigation }) {
               }
               onPress={() => {
                 navigation.dispatch(
-                  CommonActions.navigate({ name: "AddItemStack" })
+                  CommonActions.navigate({
+                    name: "AddItemStack",
+                    params: { screenType: "private" },
+                  })
                 );
               }}
             />

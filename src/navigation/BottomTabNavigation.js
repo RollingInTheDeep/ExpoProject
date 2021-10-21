@@ -5,12 +5,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 /* Internal dependencies */
-import { HomeScreen } from "screens";
-import { PrivateScreen } from "screens";
-import { AddItemScreen } from "screens";
-import { TextSelectionScreen } from "screens";
-import { PublicScreen } from "screens";
-import CameraAPI from "hooks/CamerAPI";
+import { HomeScreen } from "../screens";
+import { PrivateScreen } from "../screens";
+import { AddItemScreen } from "../screens";
+import { TextSelectionScreen } from "../screens";
+import { PublicScreen } from "../screens";
+import CameraAPI from "../hooks/CamerAPI";
 
 const Tab = createBottomTabNavigator();
 
