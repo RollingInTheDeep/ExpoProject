@@ -12,3 +12,4 @@ web-build/
 # macOS
 .DS_Store
 server/db/config.json
+src/api/axios.js
