@@ -14,21 +14,12 @@ function CardButton({ screen, navigation }) {
         size={24}
         color="black"
         onPress={() => {
-          {
-            screen == "private"
-              ? navigation.dispatch(
-                  CommonActions.navigate({
-                    name: "AddItemStack",
-                    params: { screenType: "private" },
-                  })
-                )
-              : navigation.dispatch(
-                  CommonActions.navigate({
-                    name: "AddItemStack",
-                    params: { screenType: "public" },
-                  })
-                );
-          }
+          navigation.dispatch(
+            CommonActions.navigate({
+              name: "AddItemStack",
+              params: { screenType: screen },
+            })
+          );
         }}
       />
       <MaterialIcons
