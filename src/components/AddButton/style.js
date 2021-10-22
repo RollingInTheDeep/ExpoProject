@@ -6,13 +6,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 15,
     backgroundColor: "#6d9773",
-    flex:1,
+    flex: 1,
   },
   text: {
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
-    color:"#ffffff"
+    color: "#ffffff",
   },
 });
 

@@ -10,7 +10,8 @@ import { PrivateScreen } from "../screens";
 import { AddItemScreen } from "../screens";
 import { TextSelectionScreen } from "../screens";
 import { PublicScreen } from "../screens";
-import CameraAPI from "../hooks/CamerAPI";
+import { CameraScreen } from "../screens";
+import { ImageCropScreen } from "../screens";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +19,8 @@ const CameraStack = createStackNavigator();
 function CameraStackScreen() {
   return (
     <CameraStack.Navigator>
-      <CameraStack.Screen name="재촬영" component={CameraAPI} />
+      <CameraStack.Screen name="재촬영" component={CameraScreen} />
+      <CameraStack.Screen name="ImageCrop" component={ImageCropScreen} />
       <CameraStack.Screen
         name="TextSelection"
         component={TextSelectionScreen}
