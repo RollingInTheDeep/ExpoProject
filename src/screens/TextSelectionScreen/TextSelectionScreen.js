@@ -4,7 +4,7 @@ import styles from "./style";
 import { CommonActions } from "@react-navigation/routers";
 
 const TextSelectionScreen = ({ route, navigation }) => {
-  const text = route.params.text.match(/[^\r\n]+/g);
+  const text = route.params.text.split(".");
   const [textList, setTextList] = useState([]);
 
   let temp = [];
