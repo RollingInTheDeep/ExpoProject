@@ -11,7 +11,6 @@ import { AddItemScreen } from "../screens";
 import { TextSelectionScreen } from "../screens";
 import { PublicScreen } from "../screens";
 import { CameraScreen } from "../screens";
-import { ImageCropScreen } from "../screens";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +19,6 @@ function CameraStackScreen() {
   return (
     <CameraStack.Navigator>
       <CameraStack.Screen name="재촬영" component={CameraScreen} />
-      <CameraStack.Screen name="ImageCrop" component={ImageCropScreen} />
       <CameraStack.Screen
         name="TextSelection"
         component={TextSelectionScreen}

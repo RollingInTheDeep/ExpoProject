@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   ImageBackground,
+  Image,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
@@ -18,7 +19,9 @@ const CameraScreen = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [loading, setLoading] = useState(null);
   const [uri, setUri] = useState(null);
+  const [photo, setPhoto] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
+  let data = null;
 
   const ref = useRef(null);
 
@@ -43,6 +46,8 @@ const CameraScreen = ({ navigation }) => {
   const takePhoto = async () => {
     const options = { quality: 0.7, base64: true };
     const img = await ref.current.takePictureAsync(options);
+
+    setPhoto(img);
     setUri(img.uri);
     setIsVisible(true);
   };
@@ -75,13 +80,46 @@ const CameraScreen = ({ navigation }) => {
         <ImageBackground
           resizeMode="contain"
           style={styles.background}
-          //   source={{ uri: `data:image/png;base64,${uri}` }}
           source={{ uri }}
         >
           <ImageManipulator
             photo={{ uri }}
             isVisible={isVisible}
-            onPictureChoosed={({ uri: uriM }) => setUri(uriM)}
+            onPictureChoosed={async ({ uri, base64 }) => {
+              try {
+                setLoading(true);
+                ({ data } = await axios.post(
+                  "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBWS_YMp1f6NUSsBL-JlL3zc4s7zXyx_4I",
+                  {
+                    requests: [
+                      {
+                        image: { content: base64 ? base64 : photo.base64 },
+
+                        features: [
+                          { type: "TEXT_DETECTION", maxResults: 10 },
+                          {
+                            type: "DOCUMENT_TEXT_DETECTION",
+                            maxResults: 10,
+                          },
+                        ],
+                      },
+                    ],
+                  }
+                ));
+                navigation.dispatch(
+                  CommonActions.navigate({
+                    name: "TextSelection",
+                    params: { text: data.responses[0].fullTextAnnotation.text },
+                  })
+                );
+                setLoading(false);
+              } catch (e) {
+                console.log("error: ", e);
+              }
+            }}
+            saveOptions={{
+              base64: true,
+            }}
             onToggleModal={onToggleModal}
           />
         </ImageBackground>
