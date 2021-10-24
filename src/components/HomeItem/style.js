@@ -1,5 +1,5 @@
 import { StyleSheet, StatusBar } from "react-native";
-
+//import {JuaRegular} from "../Fonts/Font"
 const styles = StyleSheet.create({
 
   item: {
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
+    //fontFamily : 'JuaRegular'
   }
 });
 

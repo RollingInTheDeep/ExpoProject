@@ -14,7 +14,7 @@ function ArticleItem({ text, screen, navigation }) {
       <Card>
         <View style={styles.container}>
           <View style={styles.container1}>
-            <Text style={styles.title}>제목입니당</Text>
+            {screen == "public" ? (<Text style={styles.title}>제목입니당</Text>) : null}
             <CardButton screen={screen} navigation={navigation} />
           </View>
           <View style={styles.container2}>
