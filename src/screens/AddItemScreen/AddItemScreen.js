@@ -14,7 +14,25 @@ function AddItemScreen({ route, navigation }) {
   const pressButton = () => {
     setModalVisible(true);
   };
+  const saveText = (screenType,apiType) => {
+    if(screenType =="private"){
+      // private post
+      if(apiType=="update"){
+
+      }else{
+        // private update
+      }
+    }else{
+     // public post
+     if(apiType=="share"){
+
+     }else{
+      // private update
+    }
+  }
+}
   const screenType = route.params.screenType;
+  const apiType = route.params.apiType;
   const text = route.params.text;
 
   return (
@@ -35,7 +53,8 @@ function AddItemScreen({ route, navigation }) {
         />
         <View style={styles.caution} />
         <View style={styles.btnAdd}>
-          <AddButton onPress={pressButton} />
+          <AddButton onPress={
+            screenType == "textSelection"? pressButton : saveText(screenType,apiType)} />
           <BottomSheet
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}

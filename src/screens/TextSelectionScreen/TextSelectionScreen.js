@@ -33,7 +33,7 @@ const TextSelectionScreen = ({ route, navigation }) => {
     navigation.dispatch(
       CommonActions.navigate({
         name: "AddItemStack",
-        params: { text: text, screenType: "private" },
+        params: { text: text, screenType: "textSelection" },
       })
     );
   };

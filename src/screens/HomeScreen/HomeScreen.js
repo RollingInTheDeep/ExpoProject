@@ -73,6 +73,7 @@ const HomeScreen = ({ navigation })=> {
        navigation={navigation} screenType = "HomeScreen"  isDelete = {isDelete}/>);
 
   }, [getSelectedItem]);
+  
   return (
     <View style={styles.container}>
       {showButton ? (

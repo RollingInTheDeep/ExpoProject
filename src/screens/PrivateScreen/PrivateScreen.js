@@ -41,7 +41,7 @@ function PrivateScreen({ navigation }) {
                 navigation.dispatch(
                   CommonActions.navigate({
                     name: "AddItemStack",
-                    params: { screenType: "private" },
+                    params: { screenType: "private" , apiType: "update"},
                   })
                 );
               }}
