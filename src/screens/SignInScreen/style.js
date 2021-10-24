@@ -11,12 +11,13 @@ const styles = StyleSheet.create({
   introScreen: {
     marginTop: 10,
     flex: 0.2,
+    width: '100%'
   },
-  logo: {
-    flex: 1,
-    height: 300,
-    minWidth: '100%',
-    resizeMode: "cover",
+  trendix : {
+    fontFamily: 'KalamRegular',
+    fontSize : 60,
+    textAlign: 'center',
+    fontWeight:'bold'
   },
   editText: {
     flex: 0.7,
@@ -58,13 +59,16 @@ const styles = StyleSheet.create({
     width: 300,
   },
   text: {
-    fontSize: 20,
+    fontFamily: 'KalamRegular',
+    fontSize: 24,
   },
   leftText: {
+    fontFamily: 'KalamRegular',
     color: "#484848",
     fontSize: 15,
   },
   rigthText: {
+    fontFamily: 'KalamRegular',
     color: "#ff69b4",
     fontSize: 15,
     marginLeft: 8,

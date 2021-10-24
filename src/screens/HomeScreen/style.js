@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     marginRight: 7,
     fontSize: 20,
     color: "red",
+    fontFamily : 'JuaRegular'
   },
   fab: {
     position: "absolute",
@@ -42,6 +43,7 @@ const styles = StyleSheet.create({
     fontWeight: "normal",
     fontSize: 18,
     color: "white",
+    fontFamily : 'JuaRegular'
   },
   keybordContainer: {
     flex: 1,
@@ -96,6 +98,7 @@ const styles = StyleSheet.create({
     color: "#bdcebe",
     fontWeight: "bold",
     fontSize: 26,
+    fontFamily : 'JuaRegular'
   },
   row: {
     justifyContent: "space-between",

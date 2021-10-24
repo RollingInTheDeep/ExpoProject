@@ -4,14 +4,14 @@ import {
   View,
   Keyboard,
   TouchableWithoutFeedback,
-  Image,
   TouchableOpacity,
 } from "react-native";
 import styles from "./style";
 import GradientButton from "react-native-gradient-buttons";
 import InformationInput from "components/TextInput/InformationInput";
 import { CommonActions } from "@react-navigation/routers";
-
+import { LinearGradient } from 'expo-linear-gradient';
+import MaskedView from '@react-native-masked-view/masked-view';
 function SignInScreen({ navigation }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -19,12 +19,17 @@ function SignInScreen({ navigation }) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <View style={styles.introScreen}>
-          <Image
-            style={styles.logo}
-            source={require("../../../assets/logotitleBIG.png")}
-          />
-        </View>
+      <MaskedView
+        style={styles.introScreen}
+        maskElement={<Text style={styles.trendix}>Trendix</Text>}
+      >
+        <LinearGradient
+          colors={['cadetblue', '#fabada']}
+          start={{ x: 1, y: 1 }}
+          end={{ x: 0, y: 0.33 }}
+          style={{ flex: 1 }}
+        />
+      </MaskedView>
         <View style={styles.input}>
           <InformationInput
             labelValue={email}

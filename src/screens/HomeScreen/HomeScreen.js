@@ -86,7 +86,6 @@ const HomeScreen = ({ navigation }) => {
     },
     [getSelectedItem]
   );
-
   return (
     <View style={styles.container}>
       {showButton ? (

@@ -13,10 +13,10 @@ function ArticleItem({ text, screen, navigation }) {
     <View>
       <Card>
         <View style={styles.container}>
-          <View style={styles.container1}>
-            {screen == "public" ? (<Text style={styles.title}>제목입니당</Text>) : null}
-            <CardButton screen={screen} navigation={navigation} />
-          </View>
+        <View style={styles.container1}>
+            {screen == "public" ? (<Text style={styles.title}>제목입니다</Text>) : null}
+            <CardButton style = {styles.btn}screen={screen} navigation={navigation} />
+        </View>
           <View style={styles.container2}>
             <ReadMore
               numberOfLines={3}
