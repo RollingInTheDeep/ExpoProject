@@ -2,14 +2,13 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingLeft: 220,
+    flex:1,
+    flexDirection: "row", 
+    position:"relative",
+    left: 150,
   },
   icon: {
     marginLeft: 8,
-    marginBottom: 7,
   },
 });
 

@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    marginVertical: 20,
+    marginVertical: 10,
     marginHorizontal: 10,
     marginLeft: 13,
     borderWidth: 3,
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     fontSize: 19,
     textAlign: "center",
     color: "#000",
+    fontFamily : 'JuaRegular'
   },
   firstContainer: {
     flex: 1,

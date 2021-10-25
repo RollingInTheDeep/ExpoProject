@@ -6,6 +6,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 8,
   },
+  maskedView:{
+    minHeight: 60,
+    justifyContent:'center',
+  },
+  trendix : {
+    fontFamily: 'KalamRegular',
+    fontSize : 40,
+    flex:1
+  }
 });
 
 export default styles;
