@@ -27,8 +27,19 @@ async function getPrivateArticle({ folderId }) {
   return rows;
 }
 
+//Private 글 추가
+async function addPrivateArticle({ folderId, content }) {
+  const query = mysql.format("INSERT INTO Private SET ?", {
+    folderId,
+    content,
+  });
+  let [rows, fields] = await connection.query(query);
+  return rows;
+}
+
 module.exports = {
   getFolder,
   addFolder,
   getPrivateArticle,
+  addPrivateArticle,
 };

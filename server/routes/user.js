@@ -1,6 +1,11 @@
 var express = require("express");
 var router = express.Router();
-const { getFolder, addFolder, getPrivateArticle } = require("../db/user");
+const {
+  getFolder,
+  addFolder,
+  getPrivateArticle,
+  addPrivateArticle,
+} = require("../db/user");
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -25,12 +30,23 @@ router.post("/folders", async function (req, res, next) {
   res.json({ success: true });
 });
 
-//private 글 조회
+//Private 글 조회
 router.get("/private", async function (req, res, next) {
   const folderId = req.query.folderId;
-  console.log(req);
   const rows = await getPrivateArticle({ folderId: folderId });
   res.json(rows);
+});
+
+//Private 글 추가
+router.post("/private", async function (req, res, next) {
+  const folderId = req.body.folderId;
+  const content = req.body.content;
+
+  await addPrivateArticle({
+    folderId: folderId,
+    content: content,
+  });
+  res.json({ success: true });
 });
 
 module.exports = router;

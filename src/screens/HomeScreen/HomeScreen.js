@@ -21,13 +21,13 @@ import HomeItem from "components/HomeItem/HomeItem";
 import { createFoldertAPI } from "../../api/folderAPI";
 import useFolder from "../../hooks/useFolder";
 
-const HomeScreen = ({ navigation })=> {
+const HomeScreen = ({ navigation }) => {
   const [showModal, setShowModal] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [change, setChange] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [text, setText] = useState(null);
-  const [selectedItem,setSelectedItem] = useState([]);
+  const [selectedItem, setSelectedItem] = useState([]);
   const { folderList, onCreate, onRemove } = useFolder({ userId: 3 });
 
   const _onPressDelete = () => {
@@ -35,12 +35,12 @@ const HomeScreen = ({ navigation })=> {
     setIsDelete(true);
   };
 
-  const getSelectedItem = (item) =>{
+  const getSelectedItem = (item) => {
     setSelectedItem(item);
     console.log(selectedItem);
     //selectedItem -> 선택한 아이템 아이디 값을 모아놓은 리스트
     change ? setChange(false) : setChange(true);
-  }
+  };
   const deleteItem = () => {
     alert("삭제됩니다");
     setShowButton(false);
@@ -64,16 +64,29 @@ const HomeScreen = ({ navigation })=> {
   //     onRemove(folderId);
   //   });
   // };
-  const renderItem = useCallback(({item}) => {
-    const backgroundColor = selectedItem.includes(item.folderId) ? "#2f4f4f" : '#ffffff';
-    const color = selectedItem.includes(item.folderId)?'white' : 'black';
-    
-    return(<HomeItem item={item} backgroundColor={{ backgroundColor }} textColor={{ color }} 
-      selectedItem = {selectedItem} getSelectedItem = {getSelectedItem} 
-       navigation={navigation} screenType = "HomeScreen"  isDelete = {isDelete}/>);
+  const renderItem = useCallback(
+    ({ item }) => {
+      const backgroundColor = selectedItem.includes(item.folderId)
+        ? "#2f4f4f"
+        : "#ffffff";
+      const color = selectedItem.includes(item.folderId) ? "white" : "black";
 
-  }, [getSelectedItem]);
-  
+      return (
+        <HomeItem
+          item={item}
+          backgroundColor={{ backgroundColor }}
+          textColor={{ color }}
+          selectedItem={selectedItem}
+          getSelectedItem={getSelectedItem}
+          navigation={navigation}
+          screenType="HomeScreen"
+          isDelete={isDelete}
+        />
+      );
+    },
+    [getSelectedItem]
+  );
+
   return (
     <View style={styles.container}>
       {showButton ? (
@@ -111,7 +124,7 @@ const HomeScreen = ({ navigation })=> {
               size="sm"
               bottom={-8}
               right={0}
-              onPress={() =>_onPressDelete()}
+              onPress={() => _onPressDelete()}
               icon={
                 <Icon color="white" as={<AntDesign name="minus" />} size="sm" />
               }
@@ -138,6 +151,6 @@ const HomeScreen = ({ navigation })=> {
       </NativeBaseProvider>
     </View>
   );
-}
+};
 
 export default HomeScreen;

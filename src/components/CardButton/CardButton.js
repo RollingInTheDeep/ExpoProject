@@ -17,7 +17,7 @@ function CardButton({ screen, navigation }) {
           navigation.dispatch(
             CommonActions.navigate({
               name: "AddItemStack",
-              params: { screenType: screen },
+              params: { screenType: screen, apiType: "put" },
             })
           );
         }}
@@ -38,7 +38,7 @@ function CardButton({ screen, navigation }) {
             navigation.dispatch(
               CommonActions.navigate({
                 name: "AddItemStack",
-                params: { screenType: "public" },
+                params: { screenType: screen, apiType: "post" },
               })
             );
           }}
