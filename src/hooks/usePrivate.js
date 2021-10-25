@@ -8,11 +8,19 @@ function usePrivate({ folderId }) {
   const [privateArticleList, setPrivateArticleList] = useState([]);
 
   useEffect(() => {
+    handlePrivateList();
+  }, []);
+
+  const handlePrivateList = function () {
     getPrivateArticleAPI({ folderId }).then((result) => {
       setPrivateArticleList(result.data);
     });
-  }, []);
-  return privateArticleList;
+  };
+
+  function onCreate() {
+    handlePrivateList();
+  }
+  return { privateArticleList, onCreate };
 }
 
 export default usePrivate;

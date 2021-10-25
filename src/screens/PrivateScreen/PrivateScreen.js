@@ -12,7 +12,7 @@ import ArticleItem from "../../components/ArticleItem/ArticleItem";
 import usePrivate from "../../hooks/usePrivate";
 
 function PrivateScreen({ navigation }) {
-  const privateArticleList = usePrivate({ folderId: 1 });
+  const { privateArticleList, onCreate } = usePrivate({ folderId: 1 });
 
   return (
     <View style={styles.container}>
@@ -41,7 +41,11 @@ function PrivateScreen({ navigation }) {
                 navigation.dispatch(
                   CommonActions.navigate({
                     name: "AddItemStack",
-                    params: { screenType: "private" , apiType: "update"},
+                    params: {
+                      screenType: "private",
+                      apiType: "post",
+                      onCreate: onCreate,
+                    },
                   })
                 );
               }}
