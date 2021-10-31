@@ -8,7 +8,7 @@ import {
   NativeBaseProvider,
   FormControl,
   Input,
-  FlatList,
+  FlatList, Modal,
 } from "native-base";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { View, Text, TouchableOpacity } from "react-native";
@@ -18,11 +18,12 @@ import { AntDesign } from "@expo/vector-icons";
 import styles from "./style";
 import HomeModal from "components/Modal/HomeModal";
 import HomeItem from "components/HomeItem/HomeItem";
-import { createFoldertAPI } from "../../api/folderAPI";
+import { createFoldertAPI, removeFolderAPI } from "../../api/folderAPI";
 import useFolder from "../../hooks/useFolder";
 
 const HomeScreen = ({ navigation }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setModal] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [change, setChange] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
@@ -37,12 +38,11 @@ const HomeScreen = ({ navigation }) => {
 
   const getSelectedItem = (item) => {
     setSelectedItem(item);
-    console.log(selectedItem);
-    //selectedItem -> 선택한 아이템 아이디 값을 모아놓은 리스트
     change ? setChange(false) : setChange(true);
   };
+
   const deleteItem = () => {
-    alert("삭제됩니다");
+    setModal(false);
     setShowButton(false);
     setIsDelete(false);
   };
@@ -59,11 +59,12 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
-  // const removeFolder = () => {
-  //   removeFolderAPI({ folderId }).then(result => {
-  //     onRemove(folderId);
-  //   });
-  // };
+  const removeFolder = () => {
+    removeFolderAPI({ folderId }).then((result) => {
+      onRemove(folderId);
+    });
+  };
+
   const renderItem = useCallback(
     ({ item }) => {
       const backgroundColor = selectedItem.includes(item.folderId)
@@ -91,10 +92,10 @@ const HomeScreen = ({ navigation }) => {
       {showButton ? (
         <TouchableOpacity
           style={styles.deleteButton}
-          onPress={deleteItem}
-          isVisible={showButton}
+          onPress={()=>{setModal(true)}}
+          isVisible={() => {showButton}}
         >
-          <Text style={styles.deleteText}>삭제 완료</Text>
+          <Text style={styles.deleteText}>삭제</Text>
         </TouchableOpacity>
       ) : null}
       <NativeBaseProvider>
@@ -114,7 +115,7 @@ const HomeScreen = ({ navigation }) => {
               colorScheme="indigo"
               right={65}
               bottom={-8}
-              onPress={() => setShowModal(true)}
+              onPress={() =>{setShowModal(true)}}
               icon={
                 <Icon color="white" as={<AntDesign name="plus" />} size="sm" />
               }
@@ -125,7 +126,7 @@ const HomeScreen = ({ navigation }) => {
               colorScheme="indigo"
               bottom={-8}
               right={0}
-              onPress={() => _onPressDelete()}
+              onPress={ () =>{_onPressDelete()}}
               icon={
                 <Icon color="white" as={<AntDesign name="minus" />} size="sm" />
               }
@@ -141,12 +142,31 @@ const HomeScreen = ({ navigation }) => {
                       multiline={true}
                     />
                   </FormControl>
-                  <TouchableOpacity style={styles.btn} onPress={createFolder}>
+                  <TouchableOpacity style={styles.btn} onPress={(createFolder)}>
                     <Text style={styles.btnText}>완료</Text>
                   </TouchableOpacity>
                 </View>
               </KeyboardAwareScrollView>
             </HomeModal>
+            <Modal
+             isOpen={showDeleteModal}
+             onClose={()=>{setModal(false)}}
+            _backdrop={{_dark: {bg: "coolGray.800",},bg: "violet.200",}} >
+            <Modal.Content maxWidth="350" maxH="230">
+            <Modal.Header>삭제 알림</Modal.Header>
+            <Modal.Body>
+            <Text style={styles.text}>완료를 선택하시면 폴더 데이터는 {"\n"} 영구적으로 삭제됩니다.</Text>
+            </Modal.Body>
+            <Modal.Footer>
+              <TouchableOpacity onPress={() => {setModal(false)}}>
+                 <Text style={styles.text}>취소</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => {deleteItem()}}>
+                 <Text style={styles.text}>완료</Text>
+              </TouchableOpacity>
+            </Modal.Footer>
+           </Modal.Content>
+          </Modal>
           </Box>
         </Center>
       </NativeBaseProvider>

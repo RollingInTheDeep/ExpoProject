@@ -7,3 +7,7 @@ export const getFolderAPI = ({ userId }) => {
 export const createFoldertAPI = ({ userId, name }) => {
   return axios.post(`/api/user/folders`, { userId, name });
 };
+
+export const removeFolderAPI = ({ folderId }) => {
+  return axios.delete(`/api/user/folders`, { folderId });
+};

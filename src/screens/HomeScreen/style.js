@@ -39,6 +39,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  text:{
+    textAlign: "center",
+    fontWeight: "normal",
+    fontSize: 18,
+    fontFamily : 'JuaRegular',
+    marginHorizontal: 10
+  },
   btnText: {
     fontWeight: "normal",
     fontSize: 18,
