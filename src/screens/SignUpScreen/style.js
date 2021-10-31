@@ -5,28 +5,34 @@ const styles = StyleSheet.create({
   screen: {
     paddingTop: Constants.statusBarHeight,
     alignItems: "center",
-    flex: 1,
+    display:"flex",
+    height: '100%',
     flexDirection: "column",
     backgroundColor: "#F5F5F5",
   },
   header: {
-    flex: 0.2,
     marginBottom: 20,
     marginTop: 36,
     alignItems: "center",
     justifyContent: "center",
   },
   all: {
-    flex: 0.5,
+    alignItems: "center",
     justifyContent: "center",
+    flex: 1,
   },
   content: {
+    alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 8,
-    paddingVertical: 12,
-    flex: 1,
-    width: 320,
+    paddingHorizontal: 10,
+    paddingVertical: 13,
+    maxHeight: 400,
     height: '100%',
+  },
+  masked:{
+    alignItems:"stretch",
+    minHeight: 20,
+    marginVertical: 8,
   },
   input: {
     borderWidth: 0.5,
@@ -35,11 +41,22 @@ const styles = StyleSheet.create({
     padding: 18,
     marginVertical: 6,
     fontWeight: "bold",
+    width: 300
   },
   textRow: {
     flexDirection: "row",
     justifyContent: "center",
     paddingHorizontal: 8,
+  },
+  profile:{
+    alignSelf:"center",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 200, 
+    height: 200, 
+    borderRadius: 100,
+    borderColor: "#D060FB",
+    borderWidth: 2,
   },
   img: {
     color: "#4A4A4A",
@@ -50,25 +67,19 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     color: "#4A4A4A",
     textAlign: "center",
+    fontFamily : 'JuaRegular'
   },
   gradient: {
     marginTop: 20,
     marginBottom: 10,
+    width: 200,
+    height: 50
   },
   text: {
     fontSize: 20,
-  },
-  leftText: {
-    color: "#484848",
-    fontSize: 18,
-    marginTop: 10,
-  },
-  rigthText: {
-    color: "#ff69b4",
-    fontSize: 18,
-    marginTop: 10,
-    marginLeft: 8,
-  },
+    fontFamily : 'JuaRegular',
+    textAlign:"center"
+  }
 });
 
 export default styles;

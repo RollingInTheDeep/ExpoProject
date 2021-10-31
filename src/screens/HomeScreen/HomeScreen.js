@@ -67,8 +67,7 @@ const HomeScreen = ({ navigation }) => {
   const renderItem = useCallback(
     ({ item }) => {
       const backgroundColor = selectedItem.includes(item.folderId)
-        ? "#2f4f4f"
-        : "#ffffff";
+        ? "#660099": "#ffffff";
       const color = selectedItem.includes(item.folderId) ? "white" : "black";
 
       return (
@@ -111,6 +110,7 @@ const HomeScreen = ({ navigation }) => {
             <Fab
               position="absolute"
               size="sm"
+              colorScheme="indigo"
               right={65}
               bottom={-8}
               onPress={() => setShowModal(true)}
@@ -121,6 +121,7 @@ const HomeScreen = ({ navigation }) => {
             <Fab
               position="absolute"
               size="sm"
+              colorScheme="indigo"
               bottom={-8}
               right={0}
               onPress={() => _onPressDelete()}
