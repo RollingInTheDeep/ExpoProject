@@ -3,6 +3,7 @@ var router = express.Router();
 const {
   getFolder,
   addFolder,
+  deleteFolder,
   getPrivateArticle,
   addPrivateArticle,
 } = require("../db/user");
@@ -28,6 +29,13 @@ router.post("/folders", async function (req, res, next) {
     name: name,
   });
   res.json({ success: true });
+});
+
+//폴더 삭제
+router.delete("/folders", async function (req, res, next) {
+  const folderId = req.body.folderId;
+  const rows = await getFolder({ folderId: folderId });
+  res.json(rows);
 });
 
 //Private 글 조회

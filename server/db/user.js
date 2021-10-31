@@ -19,6 +19,13 @@ async function addFolder({ userId, name }) {
   return rows;
 }
 
+//폴더 삭제
+async function deleteFolder({ folderId }) {
+  const query = mysql.format(`DELETE FROM Folder WHERE folderId = ${folderId}`);
+  let [rows, fields] = await connection.query(query);
+  return rows;
+}
+
 //Private 글 조회
 async function getPrivateArticle({ folderId }) {
   let [rows, fields] = await connection.query(
@@ -40,6 +47,7 @@ async function addPrivateArticle({ folderId, content }) {
 module.exports = {
   getFolder,
   addFolder,
+  deleteFolder,
   getPrivateArticle,
   addPrivateArticle,
 };
