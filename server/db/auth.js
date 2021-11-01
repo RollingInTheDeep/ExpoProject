@@ -6,7 +6,7 @@ async function findUser({ name, email }) {
   let [rows, fields] = await connection.query(
     `SELECT * FROM User WHERE name="${name}" AND email="${email}"`
   );
-  return rows;
+  return rows[0];
 }
 
 //사용자 생성

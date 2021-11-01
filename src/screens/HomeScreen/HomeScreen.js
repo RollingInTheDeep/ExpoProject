@@ -1,5 +1,5 @@
 /* External dependencies */
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import {
   Fab,
   Icon,
@@ -67,7 +67,8 @@ const HomeScreen = ({ navigation }) => {
   const renderItem = useCallback(
     ({ item }) => {
       const backgroundColor = selectedItem.includes(item.folderId)
-        ? "#660099": "#ffffff";
+        ? "#660099"
+        : "#ffffff";
       const color = selectedItem.includes(item.folderId) ? "white" : "black";
 
       return (
