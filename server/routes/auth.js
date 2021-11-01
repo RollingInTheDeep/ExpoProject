@@ -6,14 +6,16 @@ const { upload } = require("./multerS3");
 
 //사용자 생성
 router.post("/signup", async function (req, res, next) {
+  const name = req.body.name;
+  const email = req.body.email;
   const result = await findUser({
-    name: req.body.name,
-    email: req.body.email,
+    name: name,
+    email: email,
   });
   if (!result.length) {
     await createUser({
-      name: req.body.name,
-      email: req.body.email,
+      name: name,
+      email: email,
       image: req.body.image,
       nickname: req.body.nickname,
       description: req.body.description,
@@ -32,5 +34,12 @@ router.post(
     });
   }
 );
+
+router.get("/signin", async function (req, res, next) {
+  const name = req.query.name;
+  const email = req.query.email;
+  const rows = await findUser({ name: name, email: email });
+  res.json(rows);
+});
 
 module.exports = router;

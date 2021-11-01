@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* External dependencies */
+import React, { useState, useContext } from "react";
 import {
   Text,
   View,
@@ -6,12 +7,16 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from "react-native";
-import styles from "./style";
 import GradientButton from "react-native-gradient-buttons";
 import InformationInput from "components/TextInput/InformationInput";
 import { CommonActions } from "@react-navigation/routers";
 import { LinearGradient } from "expo-linear-gradient";
 import MaskedView from "@react-native-masked-view/masked-view";
+
+/* Internal dependencies */
+import styles from "./style";
+import { getUserAPI } from "../../api/userAPI";
+
 function SignInScreen({ navigation }) {
   const [email, setEmail] = useState();
   const [name, setName] = useState();
@@ -63,9 +68,20 @@ function SignInScreen({ navigation }) {
               pinkDarkGreen
               impact
               onPressAction={() => {
-                navigation.dispatch(
-                  CommonActions.reset({ index: 1, routes: [{ name: "Main" }] })
-                );
+                getUserAPI({ name, email }).then((result) => {
+                  result.data
+                    ? navigation.dispatch(
+                        CommonActions.reset({
+                          index: 1,
+                          routes: [
+                            {
+                              name: "Main",
+                            },
+                          ],
+                        })
+                      )
+                    : alert("잘못된 로그인입니다.");
+                });
               }}
             />
             <GradientButton
