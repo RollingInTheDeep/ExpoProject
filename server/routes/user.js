@@ -33,8 +33,8 @@ router.post("/folders", async function (req, res, next) {
 
 //폴더 삭제
 router.delete("/folders", async function (req, res, next) {
-  const folderId = req.body.folderId;
-  const rows = await getFolder({ folderId: folderId });
+  const selectedItem = req.body.selectedItem;
+  const rows = await deleteFolder({ selectedItem: selectedItem });
   res.json(rows);
 });
 
