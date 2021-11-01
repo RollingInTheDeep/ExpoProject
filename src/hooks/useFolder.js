@@ -21,8 +21,15 @@ function useFolder({ userId }) {
     handleFolderList();
   }
 
-  function onRemove(folderId) {
-    setFolderList(folderList.filter((folder) => folder.folderId !== folderId));
+  function onRemove(selectedItem) {
+    setFolderList(
+      folderList.filter(
+        (folder) =>
+          !selectedItem.some(
+            (selectedFolderId) => folder.folderId == selectedFolderId
+          )
+      )
+    );
   }
 
   return { folderList, onCreate, onRemove };

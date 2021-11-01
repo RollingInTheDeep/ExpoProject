@@ -20,8 +20,10 @@ async function addFolder({ userId, name }) {
 }
 
 //폴더 삭제
-async function deleteFolder({ folderId }) {
-  const query = mysql.format(`DELETE FROM Folder WHERE folderId = ${folderId}`);
+async function deleteFolder({ selectedItem }) {
+  const query = mysql.format(
+    `DELETE FROM Folder WHERE folderId in (${selectedItem})`
+  );
   let [rows, fields] = await connection.query(query);
   return rows;
 }
