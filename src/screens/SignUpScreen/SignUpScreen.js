@@ -1,23 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View,TextInput, Keyboard ,TouchableWithoutFeedback,
-    TouchableOpacity, Button, Image } from 'react-native';
+/* External dependencies */
+import React, { useState, useEffect } from "react";
+import {
+  Text,
+  View,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from "react-native";
 import GradientButton from "react-native-gradient-buttons";
+import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "react-native-vector-icons";
-import { Card } from 'react-native-paper';
-import styles from "./style"
+import { Card } from "react-native-paper";
+import * as ImagePicker from "expo-image-picker";
+import MaskedView from "@react-native-masked-view/masked-view";
 import { CommonActions } from "@react-navigation/routers";
-import * as ImagePicker from 'expo-image-picker';
-import { LinearGradient } from 'expo-linear-gradient';
-import MaskedView from '@react-native-masked-view/masked-view';
-function SignUpScreen({ navigation }){
 
+/* Internal dependencies */
+import styles from "./style";
+import { createUserAPI } from "../../api/userAPI";
+import { uploadImageAPI } from "../../api/userAPI";
+
+function SignUpScreen({ navigation }) {
   const [image, setImage] = useState(null);
+  const [showImage, setShowImage] = useState(null);
+  const [name, setName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [nickname, setNickname] = useState(null);
+  const [description, setDescription] = useState(null);
+
   useEffect(() => {
     (async () => {
-      if (Platform.OS !== 'web') {
-        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== 'granted') {
-          alert('카메라 액세스를 허용해야 사진을 선택할 수 있습니다.');
+      if (Platform.OS !== "web") {
+        const { status } =
+          await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== "granted") {
+          alert("카메라 액세스를 허용해야 사진을 선택할 수 있습니다.");
         }
       }
     })();
@@ -32,68 +52,108 @@ function SignUpScreen({ navigation }){
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
-      setImage(result.uri);
+      let formData = new FormData();
+      const config = {
+        header: { "content-type": "multipart/form-data" },
+      };
+
+      let localUri = result.uri;
+      let filename = localUri.split("/").pop();
+      let match = /\.(\w+)$/.exec(filename);
+      let type = match ? `image/${match[1]}` : `image`;
+      formData.append("file", { type: type, uri: localUri, name: filename });
+
+      setShowImage(result.uri);
+
+      uploadImageAPI({ formData, config }).then((result) => {
+        setImage(result.data.image);
+      });
     }
   };
 
-  return(
-  <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-  <View style = {styles.screen}>
-     <View style={styles.header}>
-          <FontAwesome
-            name="edit"
-            size={40}
-            style={styles.img}
-          />
-          <Text style={styles.headerText}>회원 등록</Text>
-      </View> 
-        <Card style={styles.content}>
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <ScrollView>
+        <View style={styles.screen}>
+          <View style={styles.header}>
+            <FontAwesome name="edit" size={40} style={styles.img} />
+            <Text style={styles.headerText}>회원 등록</Text>
+          </View>
+          <Card style={styles.content}>
+            <MaskedView
+              style={styles.masked}
+              maskElement={
+                <Text style={styles.text}>프로필 사진을 선택해주세요</Text>
+              }
+            >
+              <LinearGradient
+                colors={["cadetblue", "#ff3399"]}
+                start={{ x: 1, y: 1 }}
+                end={{ x: 0, y: 2 }}
+                style={{ flex: 1 }}
+              />
+            </MaskedView>
+            {!showImage ? (
+              <TouchableOpacity onPress={pickImage} style={styles.profile}>
+                <Text style={styles.text}>Click Me!</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={pickImage}>
+                <Image
+                  onPress={pickImage}
+                  source={{ uri: showImage }}
+                  style={styles.profile}
+                />
+              </TouchableOpacity>
+            )}
+            <TextInput
+              placeholder="이름"
+              placeholderTextColor="#707070"
+              style={styles.input}
+              onChangeText={(name) => setName(name)}
+            />
+            <TextInput
+              placeholder="이메일"
+              placeholderTextColor="#707070"
+              style={styles.input}
+              onChangeText={(email) => setEmail(email)}
+            />
             <TextInput
               placeholder="닉네임"
               placeholderTextColor="#707070"
               style={styles.input}
+              onChangeText={(nickname) => setNickname(nickname)}
             />
             <TextInput
               placeholder="내 소개글"
               placeholderTextColor="#707070"
               style={styles.input}
+              onChangeText={(description) => setDescription(description)}
             />
-            <MaskedView
-            style={styles.masked}
-            maskElement={<Text style={styles.text}>프로필 사진을 선택해주세요</Text>}
-            >
-           <LinearGradient
-             colors={['cadetblue', '#ff3399']}
-             start={{ x: 1, y: 1 }}
-             end={{ x: 0, y: 2 }}
-             style={{ flex: 1 }}
-          />
-          </MaskedView>
-             {!image ?
-             <TouchableOpacity  onPress={pickImage}  style={styles.profile} >
-               <Text style={styles.text}>Click Me!</Text>
-             </TouchableOpacity> : 
-           <TouchableOpacity  onPress={pickImage} >
-           <Image onPress={pickImage} source={{ uri: image }} style={styles.profile}/>
-           </TouchableOpacity>}
-        </Card>
-        <GradientButton
+          </Card>
+          <GradientButton
             style={styles.gradient}
             textStyle={styles.text}
             text="SIGN UP"
             onPressAction={() => {
+              createUserAPI({
+                name: name,
+                email: email,
+                nickname: nickname,
+                image: image,
+                description: description,
+              });
               navigation.dispatch(
-                  CommonActions.reset({ index: 1, routes: [{ name: "SignIn" }] })
+                CommonActions.reset({ index: 1, routes: [{ name: "SignIn" }] })
               );
             }}
             violetPink
             impact
-        />
-  </View>
- </TouchableWithoutFeedback>
+          />
+        </View>
+      </ScrollView>
+    </TouchableWithoutFeedback>
   );
 }
 
