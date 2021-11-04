@@ -8,8 +8,8 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   Image,
-  ScrollView,
 } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import GradientButton from "react-native-gradient-buttons";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "react-native-vector-icons";
@@ -73,8 +73,7 @@ function SignUpScreen({ navigation }) {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <ScrollView>
+    <KeyboardAwareScrollView >
         <View style={styles.screen}>
           <View style={styles.header}>
             <FontAwesome name="edit" size={40} style={styles.img} />
@@ -152,8 +151,7 @@ function SignUpScreen({ navigation }) {
             impact
           />
         </View>
-      </ScrollView>
-    </TouchableWithoutFeedback>
+    </KeyboardAwareScrollView>
   );
 }
 
