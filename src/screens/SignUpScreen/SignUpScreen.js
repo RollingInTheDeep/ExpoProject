@@ -23,14 +23,15 @@ import styles from "./style";
 import { createUserAPI } from "../../api/userAPI";
 import { uploadImageAPI } from "../../api/userAPI";
 
-function SignUpScreen({ navigation }) {
+function SignUpScreen({ route,navigation }) {
   const [image, setImage] = useState(null);
   const [showImage, setShowImage] = useState(null);
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [nickname, setNickname] = useState(null);
   const [description, setDescription] = useState(null);
-
+  const screenType = route.params.screenType;
+  const ButtonText = route.params.screenType == "SignIn" ? "Sign Up" : "Modify"
   useEffect(() => {
     (async () => {
       if (Platform.OS !== "web") {
@@ -77,7 +78,9 @@ function SignUpScreen({ navigation }) {
         <View style={styles.screen}>
           <View style={styles.header}>
             <FontAwesome name="edit" size={40} style={styles.img} />
-            <Text style={styles.headerText}>회원 등록</Text>
+            { screenType == "SignIn" ?
+            (<Text style={styles.headerText}>회원 등록</Text>)
+            :(<Text style={styles.headerText}>회원 정보 수정</Text>)}
           </View>
           <Card style={styles.content}>
             <MaskedView
@@ -134,7 +137,7 @@ function SignUpScreen({ navigation }) {
           <GradientButton
             style={styles.gradient}
             textStyle={styles.text}
-            text="SIGN UP"
+            text= {ButtonText}
             onPressAction={() => {
               createUserAPI({
                 name: name,

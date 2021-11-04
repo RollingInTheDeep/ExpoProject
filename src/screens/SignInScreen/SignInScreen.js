@@ -91,7 +91,9 @@ function SignInScreen({ navigation }) {
               violetPink
               impact
               onPressAction={() => {
-                navigation.dispatch(CommonActions.navigate({ name: "SignUp" }));
+                navigation.dispatch(CommonActions.navigate({
+                   name: "SignUp",
+                   params: { screenType: "SignIn" } }));
               }}
             />
           </View>
