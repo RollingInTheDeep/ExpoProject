@@ -1,33 +1,42 @@
-import { StyleSheet } from "react-native";
+import {
+  StyleSheet
+} from "react-native";
 
 const styles = StyleSheet.create({
+  card: {
+    marginBottom: '2%',
+    borderWidth: 3,
+    borderRadius: 5,
+    borderColor: "#fff",
+  },
   container: {
     alignItems: "center",
     flex: 1,
     height: '100%',
     justifyContent: "center",
     padding: 15,
-    marginVertical: 6,
+    marginVertical: 8,
+    marginHorizontal:3,
     borderWidth: 2,
     borderRadius: 5,
     borderStyle: "solid",
-    borderColor: "#1B7357",
+    borderColor: "#8977AD",
   },
-  title:{
+  title: {
     fontWeight: "bold",
     fontSize: 18,
-    justifyContent:"flex-start",
-    alignItems:"flex-start"
+    justifyContent: "flex-start",
+    alignItems: "flex-start"
   },
-  btn:{
-    position:"absolute",
+  btn: {
+    position: "absolute",
     left: 50,
   },
-  container1:{
-    flexDirection:"row",
+  container1: {
+    flexDirection: "row",
     marginBottom: 10,
   },
-  container2:{
+  container2: {
     flex: 1
   },
   paragraph: {
@@ -36,7 +45,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     textAlign: "center",
-    fontFamily : 'JuaRegular'
+    fontFamily: 'JuaRegular'
   },
   readMore: {
     marginTop: 5,

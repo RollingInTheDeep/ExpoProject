@@ -11,7 +11,7 @@ import styles from "./styles";
 function ArticleItem({ text, screen, navigation }) {
   return (
     <View>
-      <Card>
+      <Card style={styles.card}>
         <View style={styles.container}>
         <View style={styles.container1}>
             {screen == "public" ? (<Text style={styles.title}>제목입니다</Text>) : null}

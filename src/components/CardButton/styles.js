@@ -1,14 +1,15 @@
-import { StyleSheet } from "react-native";
+import {
+  StyleSheet
+} from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    flexDirection: "row", 
-    position:"relative",
-    left: 150,
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end"
   },
   icon: {
-    marginLeft: 8,
+    marginLeft: 10,
   },
 });
 
