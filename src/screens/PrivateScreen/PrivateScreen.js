@@ -34,6 +34,9 @@ function PrivateScreen({ navigation }) {
             <Fab
               position="absolute"
               size="sm"
+              colorScheme="indigo"
+              bottom={-5}
+              right={0}
               icon={
                 <Icon color="white" as={<AntDesign name="plus" />} size="sm" />
               }
