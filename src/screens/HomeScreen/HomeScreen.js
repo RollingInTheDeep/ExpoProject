@@ -1,5 +1,5 @@
 /* External dependencies */
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback, useContext } from 'react';
 import {
   Fab,
   Icon,
@@ -10,17 +10,17 @@ import {
   Input,
   FlatList,
   Modal,
-} from "native-base";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { View, Text, TouchableOpacity } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+} from 'native-base';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 /* Internal dependencies */
-import styles from "./style";
-import HomeModal from "components/Modal/HomeModal";
-import HomeItem from "components/HomeItem/HomeItem";
-import { createFoldertAPI, removeFolderAPI } from "../../api/folderAPI";
-import useFolder from "../../hooks/useFolder";
+import styles from './style';
+import HomeModal from 'components/Modal/HomeModal';
+import HomeItem from 'components/HomeItem/HomeItem';
+import { createFoldertAPI, removeFolderAPI } from '../../api/folderAPI';
+import useFolder from '../../hooks/useFolder';
 
 const HomeScreen = ({ navigation }) => {
   const [showModal, setShowModal] = useState(false);
@@ -48,7 +48,9 @@ const HomeScreen = ({ navigation }) => {
     setShowButton(false);
     setIsDelete(false);
   };
-
+  const undo = () => {
+    setShowModal(false);
+  };
   const createFolder = () => {
     setShowModal(false);
     {
@@ -70,9 +72,9 @@ const HomeScreen = ({ navigation }) => {
   const renderItem = useCallback(
     ({ item }) => {
       const backgroundColor = selectedItem.includes(item.folderId)
-        ? "#660099"
-        : "#ffffff";
-      const color = selectedItem.includes(item.folderId) ? "white" : "black";
+        ? '#660099'
+        : '#ffffff';
+      const color = selectedItem.includes(item.folderId) ? 'white' : 'black';
 
       return (
         <HomeItem
@@ -141,7 +143,7 @@ const HomeScreen = ({ navigation }) => {
                 <Icon color="white" as={<AntDesign name="minus" />} size="sm" />
               }
             />
-            <HomeModal show={showModal} onClose={createFolder}>
+            <HomeModal show={showModal} onClose={undo}>
               <KeyboardAwareScrollView style={styles.keybordContainer}>
                 <View style={styles.modalView}>
                   <Text style={styles.modalText}> 해쉬 태그 입력란</Text>
@@ -163,13 +165,13 @@ const HomeScreen = ({ navigation }) => {
               onClose={() => {
                 setModal(false);
               }}
-              _backdrop={{ _dark: { bg: "coolGray.800" }, bg: "violet.200" }}
+              _backdrop={{ _dark: { bg: 'coolGray.800' }, bg: 'violet.200' }}
             >
               <Modal.Content maxWidth="350" maxH="230">
                 <Modal.Header>삭제 알림</Modal.Header>
                 <Modal.Body>
                   <Text style={styles.text}>
-                    완료를 선택하시면 폴더 데이터는 {"\n"} 영구적으로
+                    완료를 선택하시면 폴더 데이터는 {'\n'} 영구적으로
                     삭제됩니다.
                   </Text>
                 </Modal.Body>
