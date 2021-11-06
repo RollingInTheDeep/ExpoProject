@@ -1,5 +1,5 @@
 /* External dependencies */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   View,
@@ -8,22 +8,21 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   Image,
-} from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import GradientButton from "react-native-gradient-buttons";
-import { LinearGradient } from "expo-linear-gradient";
-import { FontAwesome } from "react-native-vector-icons";
-import { Card } from "react-native-paper";
-import * as ImagePicker from "expo-image-picker";
-import MaskedView from "@react-native-masked-view/masked-view";
-import { CommonActions } from "@react-navigation/routers";
-
+} from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import GradientButton from 'react-native-gradient-buttons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { FontAwesome } from 'react-native-vector-icons';
+import { Card } from 'react-native-paper';
+import * as ImagePicker from 'expo-image-picker';
+import MaskedView from '@react-native-masked-view/masked-view';
+import { CommonActions } from '@react-navigation/routers';
 /* Internal dependencies */
-import styles from "./style";
-import { createUserAPI } from "../../api/userAPI";
-import { uploadImageAPI } from "../../api/userAPI";
+import styles from './style';
+import { createUserAPI } from '../../api/userAPI';
+import { uploadImageAPI } from '../../api/userAPI';
 
-function SignUpScreen({ route,navigation }) {
+function SignUpScreen({ route, navigation }) {
   const [image, setImage] = useState(null);
   const [showImage, setShowImage] = useState(null);
   const [name, setName] = useState(null);
@@ -31,14 +30,14 @@ function SignUpScreen({ route,navigation }) {
   const [nickname, setNickname] = useState(null);
   const [description, setDescription] = useState(null);
   const screenType = route.params.screenType;
-  const ButtonText = route.params.screenType == "SignIn" ? "Sign Up" : "Modify"
+  const ButtonText = route.params.screenType == 'SignIn' ? 'Sign Up' : 'Modify';
   useEffect(() => {
     (async () => {
-      if (Platform.OS !== "web") {
+      if (Platform.OS !== 'web') {
         const { status } =
           await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== "granted") {
-          alert("카메라 액세스를 허용해야 사진을 선택할 수 있습니다.");
+        if (status !== 'granted') {
+          alert('카메라 액세스를 허용해야 사진을 선택할 수 있습니다.');
         }
       }
     })();
@@ -56,14 +55,14 @@ function SignUpScreen({ route,navigation }) {
     if (!result.cancelled) {
       let formData = new FormData();
       const config = {
-        header: { "content-type": "multipart/form-data" },
+        header: { 'content-type': 'multipart/form-data' },
       };
 
       let localUri = result.uri;
-      let filename = localUri.split("/").pop();
+      let filename = localUri.split('/').pop();
       let match = /\.(\w+)$/.exec(filename);
       let type = match ? `image/${match[1]}` : `image`;
-      formData.append("file", { type: type, uri: localUri, name: filename });
+      formData.append('file', { type: type, uri: localUri, name: filename });
 
       setShowImage(result.uri);
 
@@ -74,86 +73,88 @@ function SignUpScreen({ route,navigation }) {
   };
 
   return (
-    <KeyboardAwareScrollView >
-        <View style={styles.screen}>
-          <View style={styles.header}>
-            <FontAwesome name="edit" size={40} style={styles.img} />
-            { screenType == "SignIn" ?
-            (<Text style={styles.headerText}>회원 등록</Text>)
-            :(<Text style={styles.headerText}>회원 정보 수정</Text>)}
-          </View>
-          <Card style={styles.content}>
-            <MaskedView
-              style={styles.masked}
-              maskElement={
-                <Text style={styles.text}>프로필 사진을 선택해주세요</Text>
-              }
-            >
-              <LinearGradient
-                colors={["cadetblue", "#ff3399"]}
-                start={{ x: 1, y: 1 }}
-                end={{ x: 0, y: 2 }}
-                style={{ flex: 1 }}
-              />
-            </MaskedView>
-            {!showImage ? (
-              <TouchableOpacity onPress={pickImage} style={styles.profile}>
-                <Text style={styles.text}>Click Me!</Text>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity onPress={pickImage}>
-                <Image
-                  onPress={pickImage}
-                  source={{ uri: showImage }}
-                  style={styles.profile}
-                />
-              </TouchableOpacity>
-            )}
-            <TextInput
-              placeholder="이름"
-              placeholderTextColor="#707070"
-              style={styles.input}
-              onChangeText={(name) => setName(name)}
-            />
-            <TextInput
-              placeholder="이메일"
-              placeholderTextColor="#707070"
-              style={styles.input}
-              onChangeText={(email) => setEmail(email)}
-            />
-            <TextInput
-              placeholder="닉네임"
-              placeholderTextColor="#707070"
-              style={styles.input}
-              onChangeText={(nickname) => setNickname(nickname)}
-            />
-            <TextInput
-              placeholder="내 소개글"
-              placeholderTextColor="#707070"
-              style={styles.input}
-              onChangeText={(description) => setDescription(description)}
-            />
-          </Card>
-          <GradientButton
-            style={styles.gradient}
-            textStyle={styles.text}
-            text= {ButtonText}
-            onPressAction={() => {
-              createUserAPI({
-                name: name,
-                email: email,
-                nickname: nickname,
-                image: image,
-                description: description,
-              });
-              navigation.dispatch(
-                CommonActions.reset({ index: 1, routes: [{ name: "SignIn" }] })
-              );
-            }}
-            violetPink
-            impact
-          />
+    <KeyboardAwareScrollView>
+      <View style={styles.screen}>
+        <View style={styles.header}>
+          <FontAwesome name="edit" size={40} style={styles.img} />
+          {screenType == 'SignIn' ? (
+            <Text style={styles.headerText}>회원 등록</Text>
+          ) : (
+            <Text style={styles.headerText}>회원 정보 수정</Text>
+          )}
         </View>
+        <Card style={styles.content}>
+          <MaskedView
+            style={styles.masked}
+            maskElement={
+              <Text style={styles.text}>프로필 사진을 선택해주세요</Text>
+            }
+          >
+            <LinearGradient
+              colors={['cadetblue', '#ff3399']}
+              start={{ x: 1, y: 1 }}
+              end={{ x: 0, y: 2 }}
+              style={{ flex: 1 }}
+            />
+          </MaskedView>
+          {!showImage ? (
+            <TouchableOpacity onPress={pickImage} style={styles.profile}>
+              <Text style={styles.text}>Click Me!</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={pickImage}>
+              <Image
+                onPress={pickImage}
+                source={{ uri: showImage }}
+                style={styles.profile}
+              />
+            </TouchableOpacity>
+          )}
+          <TextInput
+            placeholder="이름"
+            placeholderTextColor="#707070"
+            style={styles.input}
+            onChangeText={(name) => setName(name)}
+          />
+          <TextInput
+            placeholder="이메일"
+            placeholderTextColor="#707070"
+            style={styles.input}
+            onChangeText={(email) => setEmail(email)}
+          />
+          <TextInput
+            placeholder="닉네임"
+            placeholderTextColor="#707070"
+            style={styles.input}
+            onChangeText={(nickname) => setNickname(nickname)}
+          />
+          <TextInput
+            placeholder="내 소개글"
+            placeholderTextColor="#707070"
+            style={styles.input}
+            onChangeText={(description) => setDescription(description)}
+          />
+        </Card>
+        <GradientButton
+          style={styles.gradient}
+          textStyle={styles.text}
+          text={ButtonText}
+          onPressAction={() => {
+            createUserAPI({
+              name: name,
+              email: email,
+              nickname: nickname,
+              image: image,
+              description: description,
+            });
+            navigation.dispatch(
+              CommonActions.reset({ index: 1, routes: [{ name: 'SignIn' }] })
+            );
+          }}
+          violetPink
+          impact
+        />
+      </View>
     </KeyboardAwareScrollView>
   );
 }

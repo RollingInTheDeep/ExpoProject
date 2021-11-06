@@ -1,11 +1,11 @@
-import React from "react";
-import { View } from "react-native";
-import { Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
-import { CommonActions } from "@react-navigation/routers";
+import React from 'react';
+import { View } from 'react-native';
+import { Entypo, MaterialIcons, AntDesign } from '@expo/vector-icons';
+import { CommonActions } from '@react-navigation/routers';
 
-import styles from "./styles";
+import styles from './styles';
 
-function CardButton({ screen, navigation }) {
+function CardButton({ screen, navigation, text }) {
   return (
     <View style={styles.container}>
       <Entypo
@@ -16,8 +16,8 @@ function CardButton({ screen, navigation }) {
         onPress={() => {
           navigation.dispatch(
             CommonActions.navigate({
-              name: "AddItemStack",
-              params: { screenType: screen, apiType: "put" },
+              name: 'AddItemStack',
+              params: { screenType: screen, apiType: 'put', text: text },
             })
           );
         }}
@@ -28,7 +28,7 @@ function CardButton({ screen, navigation }) {
         size={24}
         color="black"
       />
-      {screen == "private" ? (
+      {screen == 'private' ? (
         <Entypo
           style={styles.icon}
           name="share"
@@ -37,8 +37,8 @@ function CardButton({ screen, navigation }) {
           onPress={() => {
             navigation.dispatch(
               CommonActions.navigate({
-                name: "AddItemStack",
-                params: { screenType: screen, apiType: "post" },
+                name: 'AddItemStack',
+                params: { screenType: 'public', apiType: 'post', text: text },
               })
             );
           }}

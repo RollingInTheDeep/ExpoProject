@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { TouchableOpacity, View, Text, FlatList } from "react-native";
-import styles from "./style";
-import { CommonActions } from "@react-navigation/routers";
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity, View, Text, FlatList } from 'react-native';
+import styles from './style';
+import { CommonActions } from '@react-navigation/routers';
 
 const TextSelectionScreen = ({ route, navigation }) => {
   let allText = route.params.text.split(
@@ -27,16 +27,16 @@ const TextSelectionScreen = ({ route, navigation }) => {
     return setTextList([...textList]);
   };
   const returnTextList = () => {
-    let text = "";
+    let text = '';
     textList.map((item) => {
       if (item.isSelected) {
-        text += item.text + "\n";
+        text += item.text + '\n';
       }
     });
     navigation.dispatch(
       CommonActions.navigate({
-        name: "AddItemStack",
-        params: { text: text, screenType: "textSelection" },
+        name: 'AddItemStack',
+        params: { text: text, screenType: 'textSelection' },
       })
     );
   };
@@ -44,8 +44,8 @@ const TextSelectionScreen = ({ route, navigation }) => {
     /**textList.map((item) => {
       console.log("Id: " + item.isSelected + "Text: " + item.text );
     });**/
-    const backgroundColor = item.isSelected ? "#2f4f4f" : "#ffffff";
-    const color = item.isSelected ? "white" : "black";
+    const backgroundColor = item.isSelected ? '#ffd400' : '#ffffff';
+    const color = item.isSelected ? 'white' : 'black';
 
     return (
       <TextItem
@@ -66,7 +66,7 @@ const TextSelectionScreen = ({ route, navigation }) => {
         keyExtractor={(item) => item.text}
       />
       <TouchableOpacity style={styles.secondContainer} onPress={returnTextList}>
-        <Text style={styles.text}>다음</Text>
+        <Text style={styles.textNext}>다음</Text>
       </TouchableOpacity>
     </View>
   );
