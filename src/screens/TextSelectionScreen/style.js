@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,33 +8,38 @@ const styles = StyleSheet.create({
     marginLeft: 13,
     borderWidth: 3,
     borderRadius: 5,
-    borderColor: "#ddd",
+    borderColor: '#ddd',
     borderBottomWidth: 0,
-    shadowColor: "#000000",
+    shadowColor: '#000000',
     shadowOffset: { width: 1, height: 2 },
     shadowOpacity: 0.5,
     shadowRadius: 3,
     elevation: 2,
-    justifyContent: "flex-start",
-    alignItems: "stretch",
-    alignContent:"flex-start",
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    alignContent: 'flex-start',
+  },
+  textNext: {
+    fontSize: 19,
+    color: '#000',
+    fontFamily: 'JuaRegular',
+    textAlign: 'center',
   },
   text: {
     fontSize: 19,
-    textAlign: "center",
-    color: "#000",
-    fontFamily : 'JuaRegular'
+    color: '#000',
+    fontFamily: 'JuaRegular',
   },
   firstContainer: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   secondContainer: {
     flex: 0.08,
-    textAlign: "center",
-    alignContent: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff"
+    textAlign: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
   },
   flatList: {
     flex: 2,
