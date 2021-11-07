@@ -6,12 +6,8 @@ const {
   deleteFolder,
   getPrivateArticle,
   addPrivateArticle,
+  getProfile,
 } = require("../db/user");
-
-/* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
-});
 
 //폴더 조회
 router.get("/folders", async function (req, res, next) {
@@ -55,6 +51,13 @@ router.post("/private", async function (req, res, next) {
     content: content,
   });
   res.json({ success: true });
+});
+
+//Profile 조회
+router.get("/profile", async function (req, res, next) {
+  const userId = req.query.userId;
+  const rows = await getProfile({ userId: userId });
+  res.json(rows[0]);
 });
 
 module.exports = router;
