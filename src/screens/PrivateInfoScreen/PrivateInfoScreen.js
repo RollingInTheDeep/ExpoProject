@@ -1,6 +1,6 @@
 /* External dependencies */
 import React from "react";
-import { Text, View, Image, ImageBackground, ScrollView } from "react-native";
+import { Text, View, Image, ScrollView } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -8,9 +8,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import styles from "./style";
 import useUser from "../../hooks/useUser";
 
-function ProfileScreen() {
+function PrivateInfoScreen() {
   const { image, name, email, nickname, description } = useUser({ userId: 6 });
-  console.log(image);
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -41,4 +40,4 @@ function ProfileScreen() {
   );
 }
 
-export default ProfileScreen;
+export default PrivateInfoScreen;

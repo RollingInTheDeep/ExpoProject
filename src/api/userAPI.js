@@ -28,6 +28,6 @@ export const logOutAPI = () => {
   return axios.get("/auth/logout");
 };
 
-export const getProfileAPI = ({ userId }) => {
-  return axios.get("/api/user/profile", { params: { userId: userId } });
+export const getPrivateInfoAPI = ({ userId }) => {
+  return axios.get("/api/user/privateInfo", { params: { userId: userId } });
 };
