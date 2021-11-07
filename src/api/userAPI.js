@@ -17,7 +17,7 @@ export const createUserAPI = ({
 };
 
 export const uploadImageAPI = ({ formData, config }) => {
-  return axios.post("auth/uploadImage", formData, config);
+  return axios.post("/auth/uploadImage", formData, config);
 };
 
 export const getUserAPI = ({ name, email }) => {
@@ -26,4 +26,8 @@ export const getUserAPI = ({ name, email }) => {
 
 export const logOutAPI = () => {
   return axios.get("/auth/logout");
+};
+
+export const getProfileAPI = ({ userId }) => {
+  return axios.get("/api/user/profile", { params: { userId: userId } });
 };
