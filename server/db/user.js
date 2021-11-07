@@ -47,7 +47,7 @@ async function addPrivateArticle({ folderId, content }) {
 }
 
 //Profile 조회
-async function getProfile({ userId }) {
+async function getPrivateInfo({ userId }) {
   let [rows, fields] = await connection.query(
     `SELECT * FROM User WHERE userId=${userId}`
   );
@@ -60,5 +60,5 @@ module.exports = {
   deleteFolder,
   getPrivateArticle,
   addPrivateArticle,
-  getProfile,
+  getPrivateInfo,
 };

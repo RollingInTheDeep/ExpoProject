@@ -11,7 +11,6 @@ import { AddItemScreen } from "../screens";
 import { TextSelectionScreen } from "../screens";
 import { PublicScreen } from "../screens";
 import { CameraScreen } from "../screens";
-import { ProfileScreen } from "../screens";
 
 const Tab = createBottomTabNavigator();
 
@@ -79,7 +78,7 @@ const BottomTabNavigation = () => {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Profile"
         component={ProfileScreen}
         options={{
@@ -88,7 +87,7 @@ const BottomTabNavigation = () => {
             <MaterialCommunityIcons name="account" color={color} size={size} />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };

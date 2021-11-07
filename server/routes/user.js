@@ -6,7 +6,7 @@ const {
   deleteFolder,
   getPrivateArticle,
   addPrivateArticle,
-  getProfile,
+  getPrivateInfo,
 } = require("../db/user");
 
 //폴더 조회
@@ -53,10 +53,10 @@ router.post("/private", async function (req, res, next) {
   res.json({ success: true });
 });
 
-//Profile 조회
-router.get("/profile", async function (req, res, next) {
+//Private Info 조회
+router.get("/privateInfo", async function (req, res, next) {
   const userId = req.query.userId;
-  const rows = await getProfile({ userId: userId });
+  const rows = await getPrivateInfo({ userId: userId });
   res.json(rows[0]);
 });
 

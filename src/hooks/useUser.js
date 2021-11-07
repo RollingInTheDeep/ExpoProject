@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 /* Internal dependencies */
-import { getProfileAPI } from "../api/userAPI";
+import { getPrivateInfoAPI } from "../api/userAPI";
 
 function useUser({ userId }) {
   const [image, setImage] = useState(null);
@@ -16,7 +16,7 @@ function useUser({ userId }) {
   }, []);
 
   const handleUserInfo = function () {
-    getProfileAPI({ userId }).then((result) => {
+    getPrivateInfoAPI({ userId }).then((result) => {
       setImage(result.data.image);
       setName(result.data.name);
       setEmail(result.data.email);
