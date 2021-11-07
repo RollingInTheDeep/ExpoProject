@@ -18,8 +18,7 @@ import AddButton from 'components/AddButton/AddButton';
 import BottomSheet from 'components/BottomSheet/BottomSheet';
 import { createPrivateArticleAPI } from '../../api/privateAPI.js';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { background } from 'styled-system';
-import { backgroundColor } from 'styled-system';
+
 function AddItemScreen({ route, navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const routeText = route.params.text;

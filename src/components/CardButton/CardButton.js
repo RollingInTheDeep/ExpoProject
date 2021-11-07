@@ -18,7 +18,7 @@ function CardButton({ screen, navigation, text }) {
         style={styles.icon}
         name="edit"
         size={24}
-        color="black"
+        color="white"
         onPress={() => {
           navigation.dispatch(
             CommonActions.navigate({
@@ -32,14 +32,14 @@ function CardButton({ screen, navigation, text }) {
         style={styles.icon}
         name="delete"
         size={24}
-        color="black"
+        color="white"
       />
       {screen == 'private' ? (
         <Entypo
           style={styles.icon}
           name="share"
           size={24}
-          color="black"
+          color="#8b00ff"
           onPress={() => {
             navigation.dispatch(
               CommonActions.navigate({
