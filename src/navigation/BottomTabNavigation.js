@@ -11,6 +11,7 @@ import { AddItemScreen } from "../screens";
 import { TextSelectionScreen } from "../screens";
 import { PublicScreen } from "../screens";
 import { CameraScreen } from "../screens";
+import { ProfileScreen } from "../screens";
 
 const Tab = createBottomTabNavigator();
 
@@ -75,6 +76,16 @@ const BottomTabNavigation = () => {
           tabBarLabel: "Public",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="heart" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account" color={color} size={size} />
           ),
         }}
       />
