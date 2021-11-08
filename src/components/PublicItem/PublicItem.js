@@ -1,6 +1,6 @@
 /* External dependencies */
 import React, { memo } from 'react';
-import { Text, View, TouchableOpacity, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
 import ReadMore from 'react-native-read-more-text';
 import { Card } from 'react-native-paper';
 import CardButton from '../CardButton/CardButton';
@@ -12,6 +12,24 @@ import styles from './style';
 function PublicItem({ text, screen, navigation, setModalVisible }) {
   const modal = () => {
     setModalVisible(true);
+  };
+  const hashItem = [
+    { text: '#감동' },
+    { text: '#눈물' },
+    { text: '#소설' },
+    { text: '#다시봐' },
+    { text: '#꼭봐' },
+    { text: '#내일봐' },
+    { text: '#내일봐' },
+    { text: '#내일봐' },
+    { text: '#내일봐' },
+    { text: '#내일봐' },
+  ];
+  const Item = ({ item, index }) => {
+    return <Text style={styles.text}>{item.text}</Text>;
+  };
+  const renderItem = ({ item, index }) => {
+    return Item({ item, index });
   };
   return (
     <Card style={styles.card}>
@@ -42,7 +60,18 @@ function PublicItem({ text, screen, navigation, setModalVisible }) {
           >
             <Text style={styles.paragraph}>{text}</Text>
           </ReadMore>
+          <Text style={styles.date}>2021-11-08</Text>
         </View>
+        <BlurView style={styles.edit} tint="dark" intensity={30}>
+          <FlatList
+            style={styles.list}
+            data={hashItem}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => item + index}
+            horizontal={true}
+            nestedScrollEnabled={true}
+          />
+        </BlurView>
         <BlurView style={styles.edit} tint="dark" intensity={95}>
           <TouchableOpacity onPress={modal}>
             <Text style={styles.name}>댓글 보기</Text>

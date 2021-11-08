@@ -10,9 +10,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bottomSheetContainer: {
-    height: 400,
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: '60%',
     backgroundColor: 'white',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
@@ -34,10 +32,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  text: {
-    fontSize: 23,
-    marginTop: 5,
-  },
   item: {
     flex: 1,
     alignContent: 'center',
@@ -45,6 +39,79 @@ const styles = StyleSheet.create({
   },
   row: {
     justifyContent: 'space-between',
+  },
+  container: {
+    flexGrow: 1,
+    flex: 1,
+  },
+  header: {
+    flexDirection: 'row',
+    padding: 15,
+    width: '100%',
+    borderBottomWidth: 1,
+  },
+  icon: {
+    alignSelf: 'flex-end',
+    position: 'absolute',
+    right: 4,
+    top: 0,
+  },
+  headerText: {
+    fontFamily: 'JuaRegular',
+    fontSize: 18,
+    marginRight: 4,
+  },
+  addText: {
+    fontFamily: 'JuaRegular',
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  btnAdd: {
+    padding: 5,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 6,
+  },
+  editText: {
+    flex: 1,
+    fontFamily: 'JuaRegular',
+    fontSize: 18,
+    color: '#000',
+  },
+  profile: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 30,
+    height: 30,
+    borderRadius: 100,
+    borderColor: '#8b00ff',
+    borderWidth: 2,
+    marginRight: 5,
+  },
+  list: {
+    flex: 1,
+  },
+  item: {
+    flexDirection: 'row',
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: '2%',
+    padding: 8,
+    borderBottomWidth: 1,
+  },
+  replyText: {
+    fontFamily: 'JuaRegular',
+    fontSize: 16,
+    marginTop: 5,
+    textAlign: 'center',
+  },
+  date: {
+    fontFamily: 'KalamRegular',
+    position: 'absolute',
+    right: 2,
+    bottom: 0,
   },
 });
 

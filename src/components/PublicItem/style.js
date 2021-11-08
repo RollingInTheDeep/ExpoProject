@@ -1,9 +1,5 @@
 import { StyleSheet } from 'react-native';
-<<<<<<< HEAD
 import { windowHeight, windowWidth } from '../Dimentions/Dimentions';
-
-const styles = StyleSheet.create({});
-=======
 
 const styles = StyleSheet.create({
   card: {
@@ -53,12 +49,19 @@ const styles = StyleSheet.create({
     marginTop: 0,
     fontSize: 14,
     fontWeight: 'bold',
-    textAlign: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
     fontFamily: 'JuaRegular',
   },
   text: {
-    marginTop: 5,
+    margin: 5,
     fontFamily: 'KalamRegular',
+  },
+  date: {
+    fontFamily: 'KalamRegular',
+    position: 'absolute',
+    bottom: 0,
+    alignSelf: 'flex-end',
   },
   profile: {
     alignSelf: 'center',
@@ -72,11 +75,12 @@ const styles = StyleSheet.create({
   },
   edit: {
     width: '100%',
-    padding: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  list: {
+    flexGrow: 1,
+  },
 });
->>>>>>> 3d59f16 ([#32] public item 재구성)
 
 export default styles;
