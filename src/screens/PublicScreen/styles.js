@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display: 'flex',
     justifyContent: 'center',
     padding: 8,
     backgroundColor: '#e5e2e9',
@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
     fontFamily: 'KalamRegular',
     fontSize: 40,
     flex: 1,
+  },
+  list: {
+    minHeight: 60,
+    width: '100%',
   },
 });
 

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   text: {
-    fontSize: 19,
+    fontSize: 16,
     color: '#000',
     fontFamily: 'JuaRegular',
   },

@@ -31,6 +31,15 @@ function PublicScreen({ navigation }) {
           style={{ flex: 1 }}
         />
       </MaskedView>
+      <View style={styles.list}>
+        <FlatList
+          //  data={hashItem}
+          // renderItem={renderItem}
+          keyExtractor={(item, index) => item + index}
+          horizontal={true}
+          nestedScrollEnabled={true}
+        />
+      </View>
       <FlatList
         data={textList}
         renderItem={({ item }) => (
@@ -39,41 +48,6 @@ function PublicScreen({ navigation }) {
         keyExtractor={(item, index) => item + index}
         windowSize={2}
       />
-      <NativeBaseProvider>
-        <Center flex={1} px="3">
-          <Box position="relative" height="100" w="100%" alignItems="flex-end">
-            <Menu
-              w="190"
-              closeOnSelect={true}
-              onOpen={() => console.log('opened')}
-              onClose={() => console.log('closed')}
-              trigger={(triggerProps) => {
-                return (
-                  <Pressable {...triggerProps}>
-                    <AntDesign name="filter" size={30} color="black" />
-                  </Pressable>
-                );
-              }}
-            >
-              <Menu.OptionGroup
-                defaultValue="Arial"
-                title="Filter"
-                type="radio"
-              >
-                <Menu.ItemOption value="Whole">Whole</Menu.ItemOption>
-                <Menu.ItemOption value="MyArticle">My Article</Menu.ItemOption>
-                <Menu.ItemOption value="DateAscending">
-                  Date Ascending
-                </Menu.ItemOption>
-                <Menu.ItemOption value="DateDescending">
-                  Date Descending
-                </Menu.ItemOption>
-                <Menu.ItemOption value="Like">Like</Menu.ItemOption>
-              </Menu.OptionGroup>
-            </Menu>
-          </Box>
-        </Center>
-      </NativeBaseProvider>
     </View>
   );
 }

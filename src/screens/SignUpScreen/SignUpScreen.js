@@ -1,14 +1,6 @@
 /* External dependencies */
 import React, { useState, useEffect } from 'react';
-import {
-  Text,
-  View,
-  TextInput,
-  Keyboard,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import GradientButton from 'react-native-gradient-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
