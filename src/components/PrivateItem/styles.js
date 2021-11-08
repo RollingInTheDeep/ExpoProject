@@ -8,10 +8,8 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
   },
   container: {
-    alignItems: 'center',
     flex: 1,
     height: '100%',
-    justifyContent: 'center',
     padding: 15,
     marginVertical: 8,
     marginHorizontal: 3,
@@ -19,12 +17,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderStyle: 'solid',
     borderColor: '#8977AD',
-  },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 18,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
   },
   btn: {
     position: 'absolute',
@@ -36,13 +28,14 @@ const styles = StyleSheet.create({
   },
   container2: {
     flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
   paragraph: {
     margin: 24,
     marginTop: 0,
     fontSize: 14,
     fontWeight: 'bold',
-    textAlign: 'center',
     fontFamily: 'JuaRegular',
   },
   readMore: {

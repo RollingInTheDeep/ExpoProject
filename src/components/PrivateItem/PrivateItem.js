@@ -14,9 +14,6 @@ function PrivateItem({ text, screen, navigation }) {
       <Card style={styles.card}>
         <View style={styles.container}>
           <View style={styles.container1}>
-            {screen == 'public' ? (
-              <Text style={styles.title}>제목입니다</Text>
-            ) : null}
             <CardButton
               style={styles.btn}
               screen={screen}

@@ -4,11 +4,13 @@ import { Entypo, MaterialIcons, AntDesign } from '@expo/vector-icons';
 import { CommonActions } from '@react-navigation/routers';
 
 import styles from './styles';
+import { withTheme } from 'styled-components';
 
 function CardButton({ screen, navigation, text }) {
   const [heart, setHeart] = useState(false);
   const iconName = heart ? 'heart' : 'hearto';
-  const color = heart ? '#cd1076' : 'black';
+  const color = heart ? '#cd1076' : 'white';
+  const privateColor = screen == 'private' ? 'black' : 'white';
   const change = () => {
     heart ? setHeart(false) : setHeart(true);
   };
@@ -18,7 +20,7 @@ function CardButton({ screen, navigation, text }) {
         style={styles.icon}
         name="edit"
         size={24}
-        color="white"
+        color={privateColor}
         onPress={() => {
           navigation.dispatch(
             CommonActions.navigate({
@@ -32,14 +34,14 @@ function CardButton({ screen, navigation, text }) {
         style={styles.icon}
         name="delete"
         size={24}
-        color="white"
+        color={privateColor}
       />
       {screen == 'private' ? (
         <Entypo
           style={styles.icon}
           name="share"
           size={24}
-          color="#8b00ff"
+          color="black"
           onPress={() => {
             navigation.dispatch(
               CommonActions.navigate({

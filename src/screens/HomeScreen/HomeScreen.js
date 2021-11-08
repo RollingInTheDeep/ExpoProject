@@ -33,8 +33,13 @@ const HomeScreen = ({ navigation }) => {
   const { folderList, onCreate, onRemove } = useFolder({ userId: 3 });
 
   const _onPressDelete = () => {
-    setShowButton(true);
-    setIsDelete(true);
+    if (showButton) {
+      setShowButton(false);
+      setIsDelete(false);
+    } else {
+      setShowButton(true);
+      setIsDelete(true);
+    }
   };
 
   const getSelectedItem = (item) => {
