@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Entypo, MaterialIcons, AntDesign } from '@expo/vector-icons';
 import { CommonActions } from '@react-navigation/routers';
@@ -6,6 +6,12 @@ import { CommonActions } from '@react-navigation/routers';
 import styles from './styles';
 
 function CardButton({ screen, navigation, text }) {
+  const [heart, setHeart] = useState(false);
+  const iconName = heart ? 'heart' : 'hearto';
+  const color = heart ? '#cd1076' : 'black';
+  const change = () => {
+    heart ? setHeart(false) : setHeart(true);
+  };
   return (
     <View style={styles.container}>
       <Entypo
@@ -44,7 +50,13 @@ function CardButton({ screen, navigation, text }) {
           }}
         />
       ) : (
-        <AntDesign style={styles.icon} name="hearto" size={24} color="black" />
+        <AntDesign
+          style={styles.icon}
+          name={iconName}
+          size={24}
+          color={color}
+          onPress={change}
+        />
       )}
     </View>
   );
