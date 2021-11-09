@@ -1,32 +1,33 @@
 /* External dependencies */
-import React, { memo } from 'react';
-import { Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
-import ReadMore from 'react-native-read-more-text';
-import { Card } from 'react-native-paper';
-import CardButton from '../CardButton/CardButton';
-import { BlurView } from 'expo-blur';
+import React, { memo } from "react";
+import { Text, View, TouchableOpacity, Image, FlatList } from "react-native";
+import ReadMore from "react-native-read-more-text";
+import { Card } from "react-native-paper";
+import CardButton from "../CardButton/CardButton";
+import { BlurView } from "expo-blur";
 
 /* Internal dependencies */
-import styles from './style';
+import styles from "./style";
+import { useToken } from "native-base";
 
-function PublicItem({ text, screen, navigation, setModalVisible }) {
+function PublicItem({ item, screen, navigation, setModalVisible }) {
   const modal = () => {
     setModalVisible(true);
   };
-  const hashItem = [
-    { text: '#감동' },
-    { text: '#눈물' },
-    { text: '#소설' },
-    { text: '#다시봐' },
-    { text: '#꼭봐' },
-    { text: '#내일봐' },
-    { text: '#내일봐' },
-    { text: '#내일봐' },
-    { text: '#내일봐' },
-    { text: '#내일봐' },
-  ];
+  // const hashItem = [
+  //   { text: "#감동" },
+  //   { text: "#눈물" },
+  //   { text: "#소설" },
+  //   { text: "#다시봐" },
+  //   { text: "#꼭봐" },
+  //   { text: "#내일봐" },
+  //   { text: "#내일봐" },
+  //   { text: "#내일봐" },
+  //   { text: "#내일봐" },
+  //   { text: "#내일봐" },
+  // ];
   const Item = ({ item, index }) => {
-    return <Text style={styles.text}>{item.text}</Text>;
+    return <Text style={styles.text}>{item}</Text>;
   };
   const renderItem = ({ item, index }) => {
     return Item({ item, index });
@@ -34,10 +35,10 @@ function PublicItem({ text, screen, navigation, setModalVisible }) {
   return (
     <Card style={styles.card}>
       <View style={styles.container}>
-        <BlurView style={styles.container1} tint="dark" intensity={95}>
+        <BlurView style={styles.container1} tint="dark" intensity={100}>
           <TouchableOpacity>
             <Image
-              source={require('../../../assets/M.png')}
+              source={require("../../../assets/M.png")}
               style={styles.profile}
             />
           </TouchableOpacity>
@@ -46,11 +47,11 @@ function PublicItem({ text, screen, navigation, setModalVisible }) {
             style={styles.btn}
             screen={screen}
             navigation={navigation}
-            text={text}
+            text={item}
           />
         </BlurView>
-        <BlurView style={styles.title} tint="dark" intensity={70}>
-          <Text style={styles.name}>입력한제목이들어갑니다.</Text>
+        <BlurView style={styles.title} tint="dark" intensity={20}>
+          <Text style={styles.name}>{item.title}</Text>
         </BlurView>
         <View style={styles.container2}>
           <ReadMore
@@ -58,21 +59,21 @@ function PublicItem({ text, screen, navigation, setModalVisible }) {
             renderTruncatedFooter={renderTruncatedFooter}
             renderRevealedFooter={renderRevealedFooter}
           >
-            <Text style={styles.paragraph}>{text}</Text>
+            <Text style={styles.paragraph}>{item.content}</Text>
           </ReadMore>
           <Text style={styles.date}>2021-11-08</Text>
         </View>
         <BlurView style={styles.edit} tint="dark" intensity={30}>
           <FlatList
             style={styles.list}
-            data={hashItem}
+            data={item.hashTag}
             renderItem={renderItem}
             keyExtractor={(item, index) => item + index}
             horizontal={true}
             nestedScrollEnabled={true}
           />
         </BlurView>
-        <BlurView style={styles.edit} tint="dark" intensity={95}>
+        <BlurView style={styles.edit} tint="dark" intensity={100}>
           <TouchableOpacity onPress={modal}>
             <Text style={styles.name}>댓글 보기</Text>
           </TouchableOpacity>
