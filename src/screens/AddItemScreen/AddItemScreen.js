@@ -11,21 +11,24 @@ import styles from "./style.js";
 import AddButton from "components/AddButton/AddButton";
 import BottomSheet from "components/BottomSheet/BottomSheet";
 import { createPrivateArticleAPI } from "../../api/privateAPI.js";
+import { createPublicArticleAPI } from "../../api/publicAPI.js";
 
 function AddItemScreen({ route, navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const routeText = route.params.text;
-  const [content, setContent] = useState(routeText);
   const screenType = route.params.screenType;
   const apiType = route.params.apiType;
   const isPublic = screenType == "public";
   const onCreate = route.params.onCreate;
+  const [content, setContent] = useState(routeText);
   const [hashItem, setHashItem] = useState([]);
   const [hash, setHash] = useState(null);
+  const [title, setTitle] = useState(null);
 
   const pressButton = () => {
     setModalVisible(true);
   };
+
   const addItem = () => {
     if (hash == "") {
       alert("텍스트를 입력하세요.");
@@ -34,6 +37,7 @@ function AddItemScreen({ route, navigation }) {
       data.text = hash;
       hashItem.push(data);
       setHashItem([...hashItem]);
+
       setHash(null);
     }
   };
@@ -43,8 +47,6 @@ function AddItemScreen({ route, navigation }) {
   };
 
   const saveText = (folderId) => {
-    console.log(folderId);
-
     if (!isPublic) {
       apiType == "post"
         ? createPrivateArticleAPI({
@@ -57,11 +59,20 @@ function AddItemScreen({ route, navigation }) {
           })
         : null;
     } else {
-      if (apiType == "share") {
-        // public post
-      } else {
-        // private update
-      }
+      apiType == "post"
+        ? createPublicArticleAPI({
+            userId: 6,
+            title: title,
+            content: content,
+            hashTag: hashTag,
+          }).then((res) => {
+            navigation.dispatch(
+              CommonActions.navigate({
+                name: "Public",
+              })
+            );
+          })
+        : null;
     }
   };
   const Item = ({ item, index }) => {
@@ -95,6 +106,7 @@ function AddItemScreen({ route, navigation }) {
               style={styles.editTitle}
               maxLength={30}
               placeholder="제목을 입력해주세요"
+              onChangeText={(text) => setTitle(text)}
             />
           ) : null}
           {isPublic ? (

@@ -11,6 +11,9 @@ import styles from "./style";
 import { useToken } from "native-base";
 
 function PublicItem({ item, screen, navigation, setModalVisible }) {
+  // hashTag를 string으로 받아왔다고 가정, 근데 이것도 dict 형태로 만들어야 할듯
+  let hashTag = item.hashTag ? item.hashTag.split(" ") : [];
+
   const modal = () => {
     setModalVisible(true);
   };
@@ -66,7 +69,7 @@ function PublicItem({ item, screen, navigation, setModalVisible }) {
         <BlurView style={styles.edit} tint="dark" intensity={30}>
           <FlatList
             style={styles.list}
-            data={item.hashTag}
+            data={hashTag}
             renderItem={renderItem}
             keyExtractor={(item, index) => item + index}
             horizontal={true}

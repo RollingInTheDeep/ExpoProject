@@ -13,13 +13,6 @@ import PublicItem from "../../components/PublicItem/PublicItem";
 import PublicBottomSheet from "../../components/PublicBottomSheet/PublicBottomSheet";
 import usePublic from "../../hooks/usePublic";
 
-const textList = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do",
-  "minim veniam, quis nostrud exercitation ullamco laboris nisi ut",
-  "aliquip ex ea commodo consequat. Duis aute irure dolor in",
-  "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla",
-  "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-];
 const items = [
   {
     uri: "http://www.lovethemountains.co.uk/wp-content/uploads/2017/05/New-Outdoor-Sports-and-Music-Festival-For-Wales-4.jpg",
@@ -69,7 +62,7 @@ function PublicScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [storyVisible, setStoryVisible] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
-  const { publicArticleList, onCreate } = usePublic();
+  const { publicArticleList, onCreatePublic } = usePublic();
 
   const closeStory = () => {
     setStoryVisible(false);
