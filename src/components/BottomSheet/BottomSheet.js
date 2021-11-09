@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+/* External dependencies */
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   Modal,
@@ -8,16 +9,19 @@ import {
   PanResponder,
   TouchableOpacity,
   FlatList,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
-import HomeItem from 'components/HomeItem/HomeItem';
-import styles from './style.js';
-import useFolder from '../../hooks/useFolder';
+} from "react-native";
+import { CommonActions } from "@react-navigation/routers";
+import Icon from "react-native-vector-icons/AntDesign";
+
+/* Internal dependencies */
+import HomeItem from "components/HomeItem/HomeItem";
+import styles from "./style.js";
+import useFolder from "../../hooks/useFolder";
 
 const BottomSheet = (props) => {
   const { modalVisible, setModalVisible } = props;
-  const { folderList, onCreate, onRemove } = useFolder({ userId: 3 });
-  const screenHeight = Dimensions.get('screen').height;
+  const { folderList, onCreate, onRemove } = useFolder({ userId: 6 });
+  const screenHeight = Dimensions.get("screen").height;
   const [change, setChange] = useState(false);
   const [selectedItem, setSelectedItem] = useState([]);
   const panY = useRef(new Animated.Value(screenHeight)).current;
@@ -67,7 +71,14 @@ const BottomSheet = (props) => {
     });
   };
   const onPress = () => {
-    alert('선택하신 폴더에 저장됩니다.');
+    alert("선택하신 폴더에 저장됩니다.");
+    console.log(selectedItem[0]);
+    props.saveText(selectedItem[0]);
+    props.navigation.dispatch(
+      CommonActions.navigate({
+        name: "HomeStack",
+      })
+    );
     setModalVisible(false);
   };
   const getSelectedItem = (item) => {
@@ -77,7 +88,7 @@ const BottomSheet = (props) => {
   return (
     <Modal
       visible={modalVisible}
-      animationType={'fade'}
+      animationType={"fade"}
       transparent
       statusBarTranslucent
     >
@@ -103,11 +114,11 @@ const BottomSheet = (props) => {
             data={folderList}
             renderItem={({ item }) => {
               const backgroundColor = selectedItem.includes(item.folderId)
-                ? '#660099'
-                : '#ffffff';
+                ? "#660099"
+                : "#ffffff";
               const color = selectedItem.includes(item.folderId)
-                ? 'white'
-                : 'black';
+                ? "white"
+                : "black";
               return (
                 <HomeItem
                   item={item}
