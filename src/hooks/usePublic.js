@@ -17,10 +17,10 @@ function usePublic() {
     });
   };
 
-  function onCreate() {
+  function onCreatePublic() {
     handlePublicList();
   }
-  return { publicArticleList, onCreate };
+  return { publicArticleList, onCreatePublic };
 }
 
 export default usePublic;
