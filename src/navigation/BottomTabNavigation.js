@@ -1,16 +1,17 @@
 /* External dependencies */
-import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 /* Internal dependencies */
-import { HomeScreen } from "../screens";
-import { PrivateScreen } from "../screens";
-import { AddItemScreen } from "../screens";
-import { TextSelectionScreen } from "../screens";
-import { PublicScreen } from "../screens";
-import { CameraScreen } from "../screens";
+import { HomeScreen } from '../screens';
+import { PrivateScreen } from '../screens';
+import { AddItemScreen } from '../screens';
+import { TextSelectionScreen } from '../screens';
+import { PublicScreen } from '../screens';
+import { CameraScreen } from '../screens';
+import { ProfileScreen } from '../screens';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,8 +44,8 @@ const BottomTabNavigation = () => {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: "purple", // 탭 활성
-        tabBarInactiveTintColor: "gray", // 탭 비활성
+        tabBarActiveTintColor: 'purple', // 탭 활성
+        tabBarInactiveTintColor: 'gray', // 탭 비활성
         headerShown: false,
       }}
     >
@@ -52,7 +53,7 @@ const BottomTabNavigation = () => {
         name="Camera"
         component={CameraStackScreen}
         options={{
-          tabBarLabel: "Camera",
+          tabBarLabel: 'Camera',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="camera" color={color} size={size} />
           ),
@@ -62,7 +63,7 @@ const BottomTabNavigation = () => {
         name="Home"
         component={HomeStackScreen}
         options={{
-          tabBarLabel: "Home",
+          tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
@@ -72,7 +73,7 @@ const BottomTabNavigation = () => {
         name="Public"
         component={PublicScreen}
         options={{
-          tabBarLabel: "Public",
+          tabBarLabel: 'Public',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="heart" color={color} size={size} />
           ),
