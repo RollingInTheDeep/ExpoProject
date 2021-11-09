@@ -1,23 +1,16 @@
 /* External dependencies */
-import React, { useState, useCallback } from 'react';
-import { Entypo } from '@expo/vector-icons';
-import {
-  View,
-  TextInput,
-  TouchableWithoutFeedback,
-  TouchableNativeFeedback,
-  Text,
-  FlatList,
-} from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { CommonActions } from '@react-navigation/routers';
+import React, { useState, useCallback } from "react";
+import { Entypo } from "@expo/vector-icons";
+import { View, TextInput, Text, FlatList } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { CommonActions } from "@react-navigation/routers";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 /* Internal dependencies */
-import styles from './style.js';
-import AddButton from 'components/AddButton/AddButton';
-import BottomSheet from 'components/BottomSheet/BottomSheet';
-import { createPrivateArticleAPI } from '../../api/privateAPI.js';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import styles from "./style.js";
+import AddButton from "components/AddButton/AddButton";
+import BottomSheet from "components/BottomSheet/BottomSheet";
+import { createPrivateArticleAPI } from "../../api/privateAPI.js";
 
 function AddItemScreen({ route, navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -25,7 +18,7 @@ function AddItemScreen({ route, navigation }) {
   const [content, setContent] = useState(routeText);
   const screenType = route.params.screenType;
   const apiType = route.params.apiType;
-  const isPublic = screenType == 'public';
+  const isPublic = screenType == "public";
   const onCreate = route.params.onCreate;
   const [hashItem, setHashItem] = useState([]);
   const [hash, setHash] = useState(null);
@@ -34,8 +27,8 @@ function AddItemScreen({ route, navigation }) {
     setModalVisible(true);
   };
   const addItem = () => {
-    if (hash == '') {
-      alert('텍스트를 입력하세요.');
+    if (hash == "") {
+      alert("텍스트를 입력하세요.");
     } else {
       let data = new Object();
       data.text = hash;
@@ -46,22 +39,25 @@ function AddItemScreen({ route, navigation }) {
   };
   const deleteItem = () => {
     const item = hashItem.splice(0, 1);
-    console.log(item);
     setHashItem([...hashItem]);
   };
-  const saveText = () => {
+
+  const saveText = (folderId) => {
+    console.log(folderId);
+
     if (!isPublic) {
-      apiType == 'post'
-        ? createPrivateArticleAPI({ folderId: 1, content: content })
-            .then((res) => {
-              onCreate();
-            })
-            .then((res) => {
-              navigation.dispatch(CommonActions.goBack());
-            })
+      apiType == "post"
+        ? createPrivateArticleAPI({
+            folderId: folderId ? folderId : 50,
+            content: content,
+          }).then((res) => {
+            onCreate
+              ? (onCreate(), navigation.dispatch(CommonActions.goBack()))
+              : null;
+          })
         : null;
     } else {
-      if (apiType == 'share') {
+      if (apiType == "share") {
         // public post
       } else {
         // private update
@@ -148,19 +144,19 @@ function AddItemScreen({ route, navigation }) {
           <View style={styles.caution}>
             {isPublic ? (
               <Text style={styles.text}>
-                ※작성 시 유의사항※{'\n'}
-                {'\n'}▷ 본 콘텐츠를 저작권법에 어긋나는 용도로 사용하실 경우{' '}
-                {'\n'}
-                사전고지 없이 수정/삭제되며, 이에 응하는{'\n'} 처벌을 받을 수
-                있으니 유의해주세요.{'\n'}
-                {'\n'}▷ 타인에게 불쾌감을 주는 비속어, 욕설 등은 삼가주세요.
+                ※작성 시 유의사항※{"\n"}
+                {"\n"}▷ 본 콘텐츠를 저작권법에 어긋나는 용도로 사용하실 경우{" "}
+                {"\n"}
+                사전고지 없이 수정/삭제되며, 이에 응하는{"\n"} 처벌을 받을 수
+                있으니 유의해주세요.{"\n"}
+                {"\n"}▷ 타인에게 불쾌감을 주는 비속어, 욕설 등은 삼가주세요.
               </Text>
             ) : (
               <Text style={styles.text}>
-                ※작성 시 유의사항※{'\n'}
-                {'\n'}▷ 본 콘텐츠를 저작권법에 어긋나는 용도로 {'\n'}사용하실
-                경우 사전 고지 없이 수정/삭제되며, {'\n'}이에 응하는 처벌을 받을
-                수 있으니{'\n'} 유의해주세요.
+                ※작성 시 유의사항※{"\n"}
+                {"\n"}▷ 본 콘텐츠를 저작권법에 어긋나는 용도로 {"\n"}사용하실
+                경우 사전 고지 없이 수정/삭제되며, {"\n"}이에 응하는 처벌을 받을
+                수 있으니{"\n"} 유의해주세요.
               </Text>
             )}
           </View>
@@ -168,12 +164,14 @@ function AddItemScreen({ route, navigation }) {
       </KeyboardAwareScrollView>
       <View style={styles.btnAdd}>
         <AddButton
-          onPress={screenType == 'textSelection' ? pressButton : saveText}
+          onPress={screenType == "textSelection" ? pressButton : saveText}
           screenType={screenType}
         />
         <BottomSheet
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
+          saveText={saveText}
+          navigation={navigation}
         />
       </View>
     </View>

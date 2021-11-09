@@ -10,8 +10,9 @@ import styles from './style';
 import PrivateItem from '../../components/PrivateItem/PrivateItem';
 import usePrivate from '../../hooks/usePrivate';
 
-function PrivateScreen({ navigation }) {
-  const { privateArticleList, onCreate } = usePrivate({ folderId: 1 });
+function PrivateScreen({ route, navigation }) {
+  const folderId = route.params.folderId;
+  const { privateArticleList, onCreate } = usePrivate({ folderId: folderId });
 
   return (
     <View style={styles.container}>

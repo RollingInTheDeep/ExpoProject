@@ -31,7 +31,12 @@ const HomeItem = (props) => {
     }
   };
   const switchPrivate = () => {
-    props.navigation.dispatch(CommonActions.navigate({ name: "PrivateStack" }));
+    props.navigation.dispatch(
+      CommonActions.navigate({
+        name: "PrivateStack",
+        params: { folderId: props.item.folderId },
+      })
+    );
   };
   return (
     <TouchableOpacity
