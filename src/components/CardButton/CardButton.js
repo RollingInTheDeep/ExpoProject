@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import { Entypo, MaterialIcons, AntDesign } from '@expo/vector-icons';
-import { CommonActions } from '@react-navigation/routers';
+import React, { useState } from "react";
+import { View } from "react-native";
+import { Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
+import { CommonActions } from "@react-navigation/routers";
 
-import styles from './styles';
-import { withTheme } from 'styled-components';
+import styles from "./styles";
+import { withTheme } from "styled-components";
 
 function CardButton({ screen, navigation, text }) {
   const [heart, setHeart] = useState(false);
-  const iconName = heart ? 'heart' : 'hearto';
-  const color = heart ? '#cd1076' : 'white';
-  const privateColor = screen == 'private' ? 'black' : 'white';
+  const iconName = heart ? "heart" : "hearto";
+  const color = heart ? "#cd1076" : "white";
+  const privateColor = screen == "private" ? "black" : "white";
   const change = () => {
     heart ? setHeart(false) : setHeart(true);
   };
@@ -24,8 +24,8 @@ function CardButton({ screen, navigation, text }) {
         onPress={() => {
           navigation.dispatch(
             CommonActions.navigate({
-              name: 'AddItemStack',
-              params: { screenType: screen, apiType: 'put', text: text },
+              name: "글 추가",
+              params: { screenType: screen, apiType: "put", text: text },
             })
           );
         }}
@@ -36,7 +36,7 @@ function CardButton({ screen, navigation, text }) {
         size={24}
         color={privateColor}
       />
-      {screen == 'private' ? (
+      {screen == "private" ? (
         <Entypo
           style={styles.icon}
           name="share"
@@ -45,8 +45,8 @@ function CardButton({ screen, navigation, text }) {
           onPress={() => {
             navigation.dispatch(
               CommonActions.navigate({
-                name: 'AddItemStack',
-                params: { screenType: 'public', apiType: 'post', text: text },
+                name: "글 추가",
+                params: { screenType: "public", apiType: "post", text: text },
               })
             );
           }}

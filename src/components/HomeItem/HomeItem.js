@@ -33,7 +33,7 @@ const HomeItem = (props) => {
   const switchPrivate = () => {
     props.navigation.dispatch(
       CommonActions.navigate({
-        name: "PrivateStack",
+        name: "Private",
         params: { folderId: props.item.folderId },
       })
     );

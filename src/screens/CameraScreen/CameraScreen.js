@@ -108,7 +108,7 @@ const CameraScreen = ({ navigation }) => {
                 ));
                 navigation.dispatch(
                   CommonActions.navigate({
-                    name: "TextSelection",
+                    name: "문장 선택",
                     params: { text: data.responses[0].fullTextAnnotation.text },
                   })
                 );

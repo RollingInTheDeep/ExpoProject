@@ -4,7 +4,7 @@ const mysql = require("mysql2");
 //Public 글 조회
 async function getPublicArticle() {
   let [rows, fields] = await connection.query(
-    `SELECT * FROM Public JOIN User WHERE Public.userId = User.userId`
+    `SELECT P.title, P.content, P.hashTag, P.createDate, U.nickname, U.image FROM Public P JOIN User U WHERE P.userId = U.userId ORDER BY P.createDate DESC`
   );
   return rows;
 }

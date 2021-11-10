@@ -1,14 +1,14 @@
 /* External dependencies */
-import React from 'react';
-import { View, FlatList } from 'react-native';
-import { Fab, Icon, Box, Center, NativeBaseProvider } from 'native-base';
-import { AntDesign } from '@expo/vector-icons';
-import { CommonActions } from '@react-navigation/routers';
+import React from "react";
+import { View, FlatList } from "react-native";
+import { Fab, Icon, Box, Center, NativeBaseProvider } from "native-base";
+import { AntDesign } from "@expo/vector-icons";
+import { CommonActions } from "@react-navigation/routers";
 
 /* Internal dependencies */
-import styles from './style';
-import PrivateItem from '../../components/PrivateItem/PrivateItem';
-import usePrivate from '../../hooks/usePrivate';
+import styles from "./style";
+import PrivateItem from "../../components/PrivateItem/PrivateItem";
+import usePrivate from "../../hooks/usePrivate";
 
 function PrivateScreen({ route, navigation }) {
   const folderId = route.params.folderId;
@@ -21,7 +21,7 @@ function PrivateScreen({ route, navigation }) {
         renderItem={({ item }) => (
           <PrivateItem
             text={item.content}
-            screen={'private'}
+            screen={"private"}
             navigation={navigation}
           />
         )}
@@ -43,10 +43,10 @@ function PrivateScreen({ route, navigation }) {
               onPress={() => {
                 navigation.dispatch(
                   CommonActions.navigate({
-                    name: 'AddItemStack',
+                    name: "글 추가",
                     params: {
-                      screenType: 'private',
-                      apiType: 'post',
+                      screenType: "private",
+                      apiType: "post",
                       onCreate: onCreate,
                     },
                   })

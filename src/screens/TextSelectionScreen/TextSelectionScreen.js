@@ -35,7 +35,7 @@ const TextSelectionScreen = ({ route, navigation }) => {
     });
     navigation.dispatch(
       CommonActions.navigate({
-        name: "AddItemStack",
+        name: "글 추가",
         params: { text: text, screenType: "textSelection", apiType: "post" },
       })
     );

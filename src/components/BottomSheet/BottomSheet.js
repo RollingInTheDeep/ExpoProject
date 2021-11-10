@@ -76,7 +76,7 @@ const BottomSheet = (props) => {
     props.saveText(selectedItem[0]);
     props.navigation.dispatch(
       CommonActions.navigate({
-        name: "HomeStack",
+        name: "Home",
       })
     );
     setModalVisible(false);
