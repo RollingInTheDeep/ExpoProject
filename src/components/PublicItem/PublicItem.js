@@ -1,15 +1,15 @@
 /* External dependencies */
-import React, { memo, useEffect, useState } from 'react';
-import { Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
-import ReadMore from 'react-native-read-more-text';
-import { Card } from 'react-native-paper';
-import CardButton from '../CardButton/CardButton';
-import { BlurView } from 'expo-blur';
+import React, { memo, useEffect, useState } from "react";
+import { Text, View, TouchableOpacity, Image, FlatList } from "react-native";
+import ReadMore from "react-native-read-more-text";
+import { Card } from "react-native-paper";
+import CardButton from "../CardButton/CardButton";
+import { BlurView } from "expo-blur";
 
-import styles from './style';
+import styles from "./style";
 
 function PublicItem({ item, screen, navigation, setModalVisible }) {
-  let hashTag = item.hashTag ? item.hashTag.split(' ') : [];
+  let hashTag = item.hashTag ? item.hashTag.split(" ") : [];
 
   const modal = () => {
     setModalVisible(true);
@@ -45,13 +45,13 @@ function PublicItem({ item, screen, navigation, setModalVisible }) {
         </View>
         <View style={styles.container2}>
           <ReadMore
-            numberOfLines={3}
+            numberOfLines={4}
             renderTruncatedFooter={renderTruncatedFooter}
             renderRevealedFooter={renderRevealedFooter}
           >
             <Text style={styles.paragraph}>{item.content}</Text>
           </ReadMore>
-          <Text style={styles.date}>{item.createDate.split('T')[0]}</Text>
+          <Text style={styles.date}>{item.createDate.split("T")[0]}</Text>
         </View>
         <View style={styles.edit} tint="dark" intensity={30}>
           <FlatList
