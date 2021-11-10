@@ -3,7 +3,9 @@ const mysql = require("mysql2");
 
 //Public 글 조회
 async function getPublicArticle() {
-  let [rows, fields] = await connection.query(`SELECT * FROM Public`);
+  let [rows, fields] = await connection.query(
+    `SELECT * FROM Public JOIN User WHERE Public.userId = User.userId`
+  );
   return rows;
 }
 

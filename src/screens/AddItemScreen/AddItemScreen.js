@@ -4,7 +4,10 @@ import { Entypo } from "@expo/vector-icons";
 import { View, TextInput, Text, FlatList } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { CommonActions } from "@react-navigation/routers";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native-gesture-handler";
 
 /* Internal dependencies */
 import styles from "./style.js";
@@ -37,7 +40,6 @@ function AddItemScreen({ route, navigation }) {
       data.text = hash;
       hashItem.push(data);
       setHashItem([...hashItem]);
-
       setHash(null);
     }
   };
@@ -45,8 +47,16 @@ function AddItemScreen({ route, navigation }) {
     const item = hashItem.splice(0, 1);
     setHashItem([...hashItem]);
   };
+  const createHash = () => {
+    let text = "";
+    hashItem.map((item) => {
+      text += item.text + " ";
+    });
+    return text;
+  };
 
   const saveText = (folderId) => {
+    const hashTag = createHash();
     if (!isPublic) {
       apiType == "post"
         ? createPrivateArticleAPI({

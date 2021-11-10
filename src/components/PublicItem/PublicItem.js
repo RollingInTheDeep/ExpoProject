@@ -8,27 +8,14 @@ import { BlurView } from "expo-blur";
 
 /* Internal dependencies */
 import styles from "./style";
-import { useToken } from "native-base";
 
 function PublicItem({ item, screen, navigation, setModalVisible }) {
-  // hashTag를 string으로 받아왔다고 가정, 근데 이것도 dict 형태로 만들어야 할듯
   let hashTag = item.hashTag ? item.hashTag.split(" ") : [];
 
   const modal = () => {
     setModalVisible(true);
   };
-  // const hashItem = [
-  //   { text: "#감동" },
-  //   { text: "#눈물" },
-  //   { text: "#소설" },
-  //   { text: "#다시봐" },
-  //   { text: "#꼭봐" },
-  //   { text: "#내일봐" },
-  //   { text: "#내일봐" },
-  //   { text: "#내일봐" },
-  //   { text: "#내일봐" },
-  //   { text: "#내일봐" },
-  // ];
+
   const Item = ({ item, index }) => {
     return <Text style={styles.text}>{item}</Text>;
   };
@@ -40,12 +27,9 @@ function PublicItem({ item, screen, navigation, setModalVisible }) {
       <View style={styles.container}>
         <BlurView style={styles.container1} tint="dark" intensity={100}>
           <TouchableOpacity>
-            <Image
-              source={require("../../../assets/M.png")}
-              style={styles.profile}
-            />
+            <Image source={{ uri: item.image }} style={styles.profile} />
           </TouchableOpacity>
-          <Text style={styles.name}>닉네임</Text>
+          <Text style={styles.name}>{item.nickname}</Text>
           <CardButton
             style={styles.btn}
             screen={screen}
@@ -53,7 +37,7 @@ function PublicItem({ item, screen, navigation, setModalVisible }) {
             text={item}
           />
         </BlurView>
-        <BlurView style={styles.title} tint="dark" intensity={20}>
+        <BlurView style={styles.title} tint="dark" intensity={10}>
           <Text style={styles.name}>{item.title}</Text>
         </BlurView>
         <View style={styles.container2}>
@@ -64,7 +48,7 @@ function PublicItem({ item, screen, navigation, setModalVisible }) {
           >
             <Text style={styles.paragraph}>{item.content}</Text>
           </ReadMore>
-          <Text style={styles.date}>2021-11-08</Text>
+          <Text style={styles.date}>{item.createDate.split("T")[0]}</Text>
         </View>
         <BlurView style={styles.edit} tint="dark" intensity={30}>
           <FlatList
@@ -76,7 +60,7 @@ function PublicItem({ item, screen, navigation, setModalVisible }) {
             nestedScrollEnabled={true}
           />
         </BlurView>
-        <BlurView style={styles.edit} tint="dark" intensity={100}>
+        <BlurView style={styles.edit} tint="dark" intensity={70}>
           <TouchableOpacity onPress={modal}>
             <Text style={styles.name}>댓글 보기</Text>
           </TouchableOpacity>

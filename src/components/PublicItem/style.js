@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { windowHeight, windowWidth } from "../Dimentions/Dimentions";
 
 const styles = StyleSheet.create({
   card: {
@@ -38,6 +37,7 @@ const styles = StyleSheet.create({
   container2: {
     flex: 1,
     padding: 15,
+    width: "100%",
   },
   name: {
     fontFamily: "JuaRegular",
@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     justifyContent: "flex-start",
-    alignItems: "flex-start",
     fontFamily: "JuaRegular",
   },
   text: {
@@ -60,6 +59,7 @@ const styles = StyleSheet.create({
   date: {
     fontFamily: "KalamRegular",
     position: "absolute",
+    paddingRight: 5,
     bottom: 0,
     alignSelf: "flex-end",
   },

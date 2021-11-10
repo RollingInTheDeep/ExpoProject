@@ -1,6 +1,6 @@
 /* External dependencies */
 import React, { useState } from "react";
-import { View, FlatList, Text } from "react-native";
+import { View, FlatList, Text, Image } from "react-native";
 import TimedSlideshow from "react-native-timed-slideshow";
 import { LinearGradient } from "expo-linear-gradient";
 import MaskedView from "@react-native-masked-view/masked-view";
@@ -63,7 +63,6 @@ function PublicScreen({ navigation }) {
   const [storyVisible, setStoryVisible] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
   const { publicArticleList, onCreatePublic } = usePublic();
-
   const closeStory = () => {
     setStoryVisible(false);
   };
