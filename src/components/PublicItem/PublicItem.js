@@ -1,23 +1,26 @@
 /* External dependencies */
-import React, { memo } from "react";
-import { Text, View, TouchableOpacity, Image, FlatList } from "react-native";
-import ReadMore from "react-native-read-more-text";
-import { Card } from "react-native-paper";
-import CardButton from "../CardButton/CardButton";
-import { BlurView } from "expo-blur";
+import React, { memo, useEffect, useState } from 'react';
+import { Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
+import ReadMore from 'react-native-read-more-text';
+import { Card } from 'react-native-paper';
+import CardButton from '../CardButton/CardButton';
+import { BlurView } from 'expo-blur';
 
-/* Internal dependencies */
-import styles from "./style";
+import styles from './style';
 
 function PublicItem({ item, screen, navigation, setModalVisible }) {
-  let hashTag = item.hashTag ? item.hashTag.split(" ") : [];
+  let hashTag = item.hashTag ? item.hashTag.split(' ') : [];
 
   const modal = () => {
     setModalVisible(true);
   };
 
   const Item = ({ item, index }) => {
-    return <Text style={styles.text}>{item}</Text>;
+    return (
+      <View style={styles.hashItem}>
+        <Text style={styles.text}>{item}</Text>
+      </View>
+    );
   };
   const renderItem = ({ item, index }) => {
     return Item({ item, index });
@@ -25,7 +28,7 @@ function PublicItem({ item, screen, navigation, setModalVisible }) {
   return (
     <Card style={styles.card}>
       <View style={styles.container}>
-        <BlurView style={styles.container1} tint="dark" intensity={100}>
+        <BlurView style={styles.container1} tint="dark" intensity={70}>
           <TouchableOpacity>
             <Image source={{ uri: item.image }} style={styles.profile} />
           </TouchableOpacity>
@@ -37,9 +40,9 @@ function PublicItem({ item, screen, navigation, setModalVisible }) {
             text={item}
           />
         </BlurView>
-        <BlurView style={styles.title} tint="dark" intensity={10}>
-          <Text style={styles.name}>{item.title}</Text>
-        </BlurView>
+        <View style={styles.title}>
+          <Text style={styles.titleText}>{item.title}</Text>
+        </View>
         <View style={styles.container2}>
           <ReadMore
             numberOfLines={3}
@@ -48,9 +51,9 @@ function PublicItem({ item, screen, navigation, setModalVisible }) {
           >
             <Text style={styles.paragraph}>{item.content}</Text>
           </ReadMore>
-          <Text style={styles.date}>{item.createDate.split("T")[0]}</Text>
+          <Text style={styles.date}>{item.createDate.split('T')[0]}</Text>
         </View>
-        <BlurView style={styles.edit} tint="dark" intensity={30}>
+        <View style={styles.edit} tint="dark" intensity={30}>
           <FlatList
             style={styles.list}
             data={hashTag}
@@ -59,7 +62,7 @@ function PublicItem({ item, screen, navigation, setModalVisible }) {
             horizontal={true}
             nestedScrollEnabled={true}
           />
-        </BlurView>
+        </View>
         <BlurView style={styles.edit} tint="dark" intensity={70}>
           <TouchableOpacity onPress={modal}>
             <Text style={styles.name}>댓글 보기</Text>
