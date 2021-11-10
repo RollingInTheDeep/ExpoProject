@@ -1,12 +1,12 @@
 /* External dependencies */
-import React, { memo } from 'react';
-import { Text, View } from 'react-native';
-import ReadMore from 'react-native-read-more-text';
-import { Card } from 'react-native-paper';
-import CardButton from '../CardButton/CardButton';
+import React, { memo } from "react";
+import { Text, View } from "react-native";
+import ReadMore from "react-native-read-more-text";
+import { Card } from "react-native-paper";
+import CardButton from "../CardButton/CardButton";
 
 /* Internal dependencies */
-import styles from './styles';
+import styles from "./styles";
 
 function PrivateItem({ text, screen, navigation }) {
   return (
@@ -23,7 +23,7 @@ function PrivateItem({ text, screen, navigation }) {
           </View>
           <View style={styles.container2}>
             <ReadMore
-              numberOfLines={3}
+              numberOfLines={4}
               renderTruncatedFooter={renderTruncatedFooter}
               renderRevealedFooter={renderRevealedFooter}
             >

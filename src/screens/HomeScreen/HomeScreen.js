@@ -151,7 +151,7 @@ const HomeScreen = ({ navigation }) => {
             <HomeModal show={showModal} onClose={undo}>
               <KeyboardAwareScrollView style={styles.keybordContainer}>
                 <View style={styles.modalView}>
-                  <Text style={styles.modalText}> 해쉬 태그 입력란</Text>
+                  <Text style={styles.modalText}>폴더 이름</Text>
                   <FormControl style={styles.centeredView}>
                     <Input
                       style={styles.form}
