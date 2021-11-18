@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flexGrow: 1,
-    flex: 1,
   },
   header: {
     flexDirection: 'row',
@@ -95,8 +94,8 @@ const styles = StyleSheet.create({
   },
   item: {
     flexDirection: 'row',
-    width: '100%',
     alignItems: 'center',
+    width: '100%',
     marginBottom: '2%',
     padding: 8,
     borderBottomWidth: 1,
@@ -112,6 +111,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 2,
     bottom: 0,
+  },
+  paragraph: {
+    flex: 1,
+    marginLeft: 10,
+    marginBottom: 3,
   },
 });
 

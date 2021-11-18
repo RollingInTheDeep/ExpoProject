@@ -1,17 +1,17 @@
 /* External dependencies */
-import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 /* Internal dependencies */
-import { HomeScreen } from "../screens";
-import { PrivateScreen } from "../screens";
-import { AddItemScreen } from "../screens";
-import { TextSelectionScreen } from "../screens";
-import { PublicScreen } from "../screens";
-import { CameraScreen } from "../screens";
-import { ProfileScreen } from "../screens";
+import { HomeScreen } from '../screens';
+import { PrivateScreen } from '../screens';
+import { AddItemScreen } from '../screens';
+import { TextSelectionScreen } from '../screens';
+import { PublicScreen } from '../screens';
+import { CameraScreen } from '../screens';
+import { ProfileScreen } from '../screens';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,14 +35,44 @@ function HomeStackScreen() {
     </HomeStack.Navigator>
   );
 }
+const PublicStack = createStackNavigator();
+function PublicStackScreen() {
+  return (
+    <PublicStack.Navigator>
+      <PublicStack.Screen
+        name="Public"
+        options={{ headerShown: false }}
+        component={PublicScreen}
+      />
+      <PublicStack.Screen
+        name="Profile"
+        options={{ headerShown: false }}
+        component={ProfileScreen}
+      />
+    </PublicStack.Navigator>
+  );
+}
+
+const ProfileStack = createStackNavigator();
+function ProfileStackScreen() {
+  return (
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
+    </ProfileStack.Navigator>
+  );
+}
 
 const BottomTabNavigation = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home_"
       screenOptions={{
-        tabBarActiveTintColor: "purple", // 탭 활성
-        tabBarInactiveTintColor: "gray", // 탭 비활성
+        tabBarActiveTintColor: 'purple', // 탭 활성
+        tabBarInactiveTintColor: 'gray', // 탭 비활성
         headerShown: false,
       }}
     >
@@ -50,7 +80,7 @@ const BottomTabNavigation = () => {
         name="Camera_"
         component={CameraStackScreen}
         options={{
-          tabBarLabel: "Camera",
+          tabBarLabel: 'Camera',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="camera" color={color} size={size} />
           ),
@@ -60,7 +90,7 @@ const BottomTabNavigation = () => {
         name="Home_"
         component={HomeStackScreen}
         options={{
-          tabBarLabel: "Home",
+          tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
@@ -68,24 +98,24 @@ const BottomTabNavigation = () => {
       />
       <Tab.Screen
         name="Public"
-        component={PublicScreen}
+        component={PublicStackScreen}
         options={{
-          tabBarLabel: "Public",
+          tabBarLabel: 'Public',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="heart" color={color} size={size} />
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
+      <Tab.Screen
+        name="Profile_"
+        component={ProfileStackScreen}
         options={{
-          tabBarLabel: "Profile",
+          tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="account" color={color} size={size} />
           ),
         }}
-      /> */}
+      />
     </Tab.Navigator>
   );
 };
