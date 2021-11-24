@@ -36,6 +36,20 @@ function HomeStackScreen() {
   );
 }
 
+const PublicStack = createStackNavigator();
+function PublicStackScreen() {
+  return (
+    <PublicStack.Navigator>
+      <HomeStack.Screen
+        name="Public"
+        component={PublicScreen}
+        options={{ headerShown: false }}
+      />
+      <HomeStack.Screen name="Profile" component={ProfileScreen} />
+    </PublicStack.Navigator>
+  );
+}
+
 const BottomTabNavigation = () => {
   return (
     <Tab.Navigator
@@ -67,8 +81,8 @@ const BottomTabNavigation = () => {
         }}
       />
       <Tab.Screen
-        name="Public"
-        component={PublicScreen}
+        name="Public_"
+        component={PublicStackScreen}
         options={{
           tabBarLabel: "Public",
           tabBarIcon: ({ color, size }) => (

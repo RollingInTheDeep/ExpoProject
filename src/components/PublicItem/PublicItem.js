@@ -5,6 +5,7 @@ import ReadMore from "react-native-read-more-text";
 import { Card } from "react-native-paper";
 import CardButton from "../CardButton/CardButton";
 import { BlurView } from "expo-blur";
+import { CommonActions } from "@react-navigation/routers";
 
 import styles from "./style";
 
@@ -25,11 +26,23 @@ function PublicItem({ item, screen, navigation, setModalVisible }) {
   const renderItem = ({ item, index }) => {
     return Item({ item, index });
   };
+
   return (
     <Card style={styles.card}>
       <View style={styles.container}>
         <BlurView style={styles.container1} tint="dark" intensity={70}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.dispatch(
+                CommonActions.navigate({
+                  name: "Profile",
+                  params: {
+                    userId: item.userId,
+                  },
+                })
+              );
+            }}
+          >
             <Image source={{ uri: item.image }} style={styles.profile} />
           </TouchableOpacity>
           <Text style={styles.name}>{item.nickname}</Text>

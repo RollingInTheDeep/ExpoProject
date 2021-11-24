@@ -100,7 +100,9 @@ const PublicBottomSheet = (props) => {
             />
             <Text style={styles.replyText}>{item.nickName}</Text>
           </View>
-          <Text style={styles.headerText}>{item.text}</Text>
+          <View style={styles.paragraph}>
+            <Text style={styles.headerText}>{item.text}</Text>
+          </View>
           <Text style={styles.date}>2021-11-08</Text>
         </View>
       </TouchableWithoutFeedback>
