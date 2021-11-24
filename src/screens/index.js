@@ -7,3 +7,4 @@ export { default as SignUpScreen } from "./SignUpScreen";
 export { default as TextSelectionScreen } from "./TextSelectionScreen";
 export { default as CameraScreen } from "./CameraScreen";
 export { default as PrivateInfoScreen } from "./PrivateInfoScreen";
+export { default as ProfileScreen } from "./ProfileScreen";
