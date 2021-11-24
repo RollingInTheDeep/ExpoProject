@@ -1,19 +1,19 @@
-var express = require("express");
+var express = require('express');
 var router = express.Router();
 const {
   getPublicArticle,
   addPublicArticle,
   getPublicArticleByUser,
-} = require("../db/public");
+} = require('../db/public');
 
 //Public 글 조회
-router.get("/article", async function (req, res, next) {
+router.get('/article', async function (req, res, next) {
   const rows = await getPublicArticle();
   res.json(rows);
 });
 
 //Public 글 추가
-router.post("/article", async function (req, res, next) {
+router.post('/article', async function (req, res, next) {
   const userId = req.body.userId;
   const title = req.body.title;
   const content = req.body.content;
@@ -28,10 +28,11 @@ router.post("/article", async function (req, res, next) {
 });
 
 //Public 글 User 별로 조회
-router.get("/article/user", async function (req, res, next) {
+router.get('/article/user', async function (req, res, next) {
   const userId = req.query.userId;
   const rows = await getPublicArticleByUser({ userId: userId });
   res.json(rows);
+  console.log(rows);
 });
 
 module.exports = router;
