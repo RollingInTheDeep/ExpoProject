@@ -15,54 +15,54 @@ import { createUserAPI } from '../../api/userAPI';
 import { uploadImageAPI } from '../../api/userAPI';
 
 function SignUpScreen({ route, navigation }) {
-  const [image, setImage] = useState(null);
-  const [showImage, setShowImage] = useState(null);
-  const [name, setName] = useState(null);
-  const [email, setEmail] = useState(null);
+  // // const [image, setImage] = useState(null);
+  // const [showImage, setShowImage] = useState(null);
+  const [id, setId] = useState(null);
+  const [pw, setPassWord] = useState(null);
   const [nickname, setNickname] = useState(null);
   const [description, setDescription] = useState(null);
   const screenType = route.params.screenType;
   const ButtonText = route.params.screenType == 'SignIn' ? 'Sign Up' : 'Modify';
-  useEffect(() => {
-    (async () => {
-      if (Platform.OS !== 'web') {
-        const { status } =
-          await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== 'granted') {
-          alert('카메라 액세스를 허용해야 사진을 선택할 수 있습니다.');
-        }
-      }
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     if (Platform.OS !== 'web') {
+  //       const { status } =
+  //         await ImagePicker.requestMediaLibraryPermissionsAsync();
+  //       if (status !== 'granted') {
+  //         alert('카메라 액세스를 허용해야 사진을 선택할 수 있습니다.');
+  //       }
+  //     }
+  //   })();
+  // }, []);
 
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      borderRadius: 100,
-      aspect: [4, 3],
-      quality: 1,
-    });
+  // const pickImage = async () => {
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     mediaTypes: ImagePicker.MediaTypeOptions.All,
+  //     allowsEditing: true,
+  //     borderRadius: 100,
+  //     aspect: [4, 3],
+  //     quality: 1,
+  //   });
 
-    if (!result.cancelled) {
-      let formData = new FormData();
-      const config = {
-        header: { 'content-type': 'multipart/form-data' },
-      };
+  //   if (!result.cancelled) {
+  //     let formData = new FormData();
+  //     const config = {
+  //       header: { 'content-type': 'multipart/form-data' },
+  //     };
 
-      let localUri = result.uri;
-      let filename = localUri.split('/').pop();
-      let match = /\.(\w+)$/.exec(filename);
-      let type = match ? `image/${match[1]}` : `image`;
-      formData.append('file', { type: type, uri: localUri, name: filename });
+  //     let localUri = result.uri;
+  //     let filename = localUri.split('/').pop();
+  //     let match = /\.(\w+)$/.exec(filename);
+  //     let type = match ? `image/${match[1]}` : `image`;
+  //     formData.append('file', { type: type, uri: localUri, name: filename });
 
-      setShowImage(result.uri);
+  //     setShowImage(result.uri);
 
-      uploadImageAPI({ formData, config }).then((result) => {
-        setImage(result.data.image);
-      });
-    }
-  };
+  //     uploadImageAPI({ formData, config }).then((result) => {
+  //       setImage(result.data.image);
+  //     });
+  //   }
+  // };
 
   return (
     <KeyboardAwareScrollView>
@@ -76,7 +76,7 @@ function SignUpScreen({ route, navigation }) {
           )}
         </View>
         <Card style={styles.content}>
-          <MaskedView
+          {/* <MaskedView
             style={styles.masked}
             maskElement={
               <Text style={styles.text}>프로필 사진을 선택해주세요</Text>
@@ -101,18 +101,18 @@ function SignUpScreen({ route, navigation }) {
                 style={styles.profile}
               />
             </TouchableOpacity>
-          )}
+          )} */}
           <TextInput
-            placeholder="이름"
+            placeholder="아이디"
             placeholderTextColor="#707070"
             style={styles.input}
-            onChangeText={(name) => setName(name)}
+            onChangeText={(id) => setId(id)}
           />
           <TextInput
-            placeholder="이메일"
+            placeholder="비밀번호"
             placeholderTextColor="#707070"
             style={styles.input}
-            onChangeText={(email) => setEmail(email)}
+            onChangeText={(pw) => setPassWord(pw)}
           />
           <TextInput
             placeholder="닉네임"
@@ -133,10 +133,9 @@ function SignUpScreen({ route, navigation }) {
           text={ButtonText}
           onPressAction={() => {
             createUserAPI({
-              name: name,
-              email: email,
+              id: id,
+              pw: pw,
               nickname: nickname,
-              image: image,
               description: description,
             });
             navigation.dispatch(
