@@ -12,7 +12,7 @@ web-build/
 # macOS
 .DS_Store
 
-server/db/config.json
-server/routes/s3config.json
+# server/db/config.json
+# server/routes/s3config.json
 
-src/api/axios.js
+# src/api/axios.js

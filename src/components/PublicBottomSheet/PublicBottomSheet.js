@@ -141,7 +141,7 @@ const PublicBottomSheet = (props) => {
     } else {
       let data = new Object();
       data.text = content;
-      data.nickName = "다윤";
+      data.nickName = "감성러";
       itemList.unshift(data);
       setItemList([...itemList]);
       setContent(null);
