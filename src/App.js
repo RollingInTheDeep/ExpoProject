@@ -1,11 +1,13 @@
 import "react-native-gesture-handler";
 import React from "react";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, LogBox } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import StackNavigator from "./navigation/StackNavigator";
+
+LogBox.ignoreAllLogs();
 
 const App = () => {
   let [fontsLoaded] = useFonts({
