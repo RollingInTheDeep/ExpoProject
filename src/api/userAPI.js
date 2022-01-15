@@ -1,17 +1,10 @@
 import axios from "./axios";
 
-export const createUserAPI = ({
-  name,
-  email,
-  nickname,
-  image,
-  description,
-}) => {
+export const createUserAPI = ({ id, pw, nickname, description }) => {
   return axios.post(`/auth/signup`, {
-    name,
-    email,
+    id,
+    pw,
     nickname,
-    image,
     description,
   });
 };

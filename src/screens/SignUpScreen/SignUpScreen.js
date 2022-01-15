@@ -1,18 +1,18 @@
 /* External dependencies */
-import React, { useState, useEffect } from 'react';
-import { Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import GradientButton from 'react-native-gradient-buttons';
-import { LinearGradient } from 'expo-linear-gradient';
-import { FontAwesome } from 'react-native-vector-icons';
-import { Card } from 'react-native-paper';
-import * as ImagePicker from 'expo-image-picker';
-import MaskedView from '@react-native-masked-view/masked-view';
-import { CommonActions } from '@react-navigation/routers';
+import React, { useState, useEffect } from "react";
+import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import GradientButton from "react-native-gradient-buttons";
+import { LinearGradient } from "expo-linear-gradient";
+import { FontAwesome } from "react-native-vector-icons";
+import { Card } from "react-native-paper";
+import * as ImagePicker from "expo-image-picker";
+import MaskedView from "@react-native-masked-view/masked-view";
+import { CommonActions } from "@react-navigation/routers";
 /* Internal dependencies */
-import styles from './style';
-import { createUserAPI } from '../../api/userAPI';
-import { uploadImageAPI } from '../../api/userAPI';
+import styles from "./style";
+import { createUserAPI } from "../../api/userAPI";
+import { uploadImageAPI } from "../../api/userAPI";
 
 function SignUpScreen({ route, navigation }) {
   // // const [image, setImage] = useState(null);
@@ -22,7 +22,8 @@ function SignUpScreen({ route, navigation }) {
   const [nickname, setNickname] = useState(null);
   const [description, setDescription] = useState(null);
   const screenType = route.params.screenType;
-  const ButtonText = route.params.screenType == 'SignIn' ? 'Sign Up' : 'Modify';
+  const ButtonText = route.params.screenType == "SignIn" ? "Sign Up" : "Modify";
+
   // useEffect(() => {
   //   (async () => {
   //     if (Platform.OS !== 'web') {
@@ -69,7 +70,7 @@ function SignUpScreen({ route, navigation }) {
       <View style={styles.screen}>
         <View style={styles.header}>
           <FontAwesome name="edit" size={40} style={styles.img} />
-          {screenType == 'SignIn' ? (
+          {screenType == "SignIn" ? (
             <Text style={styles.headerText}>회원 등록</Text>
           ) : (
             <Text style={styles.headerText}>회원 정보 수정</Text>
@@ -83,7 +84,7 @@ function SignUpScreen({ route, navigation }) {
             }
           >
             <LinearGradient
-              colors={['cadetblue', '#ff3399']}
+              colors={["cadetblue", "#ff3399"]}
               start={{ x: 1, y: 1 }}
               end={{ x: 0, y: 2 }}
               style={{ flex: 1 }}
@@ -137,10 +138,17 @@ function SignUpScreen({ route, navigation }) {
               pw: pw,
               nickname: nickname,
               description: description,
+            }).then((res) => {
+              res.data.success
+                ? (navigation.dispatch(
+                    CommonActions.reset({
+                      index: 1,
+                      routes: [{ name: "SignIn" }],
+                    })
+                  ),
+                  alert("회원가입이 완료되었습니다."))
+                : alert("아이디가 중복되었습니다.");
             });
-            navigation.dispatch(
-              CommonActions.reset({ index: 1, routes: [{ name: 'SignIn' }] })
-            );
           }}
           violetPink
           impact
