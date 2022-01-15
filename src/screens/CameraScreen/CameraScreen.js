@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from 'react';
 import {
   Text,
   View,
@@ -6,14 +6,14 @@ import {
   ActivityIndicator,
   ImageBackground,
   Image,
-} from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Camera } from "expo-camera";
-import { CommonActions } from "@react-navigation/routers";
-import { LinearGradient } from "expo-linear-gradient";
-import { ImageManipulator } from "expo-image-crop";
-import axios from "axios";
-import styles from "./style.js";
+} from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Camera } from 'expo-camera';
+import { CommonActions } from '@react-navigation/routers';
+import { LinearGradient } from 'expo-linear-gradient';
+import { ImageManipulator } from 'expo-image-crop';
+import axios from 'axios';
+import styles from './style.js';
 
 const CameraScreen = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);
@@ -28,7 +28,7 @@ const CameraScreen = ({ navigation }) => {
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
-      setHasPermission(status === "granted");
+      setHasPermission(status === 'granted');
     })();
   }, []);
 
@@ -57,7 +57,7 @@ const CameraScreen = ({ navigation }) => {
       <Camera style={styles.camera} type={Camera.Constants.Type.back} ref={ref}>
         {loading == true ? (
           <LinearGradient
-            colors={["#C9D6FF", "#E2E2E2"]}
+            colors={['#C9D6FF', '#E2E2E2']}
             style={styles.linearGradient}
           >
             <ActivityIndicator
@@ -71,7 +71,7 @@ const CameraScreen = ({ navigation }) => {
           <TouchableOpacity style={styles.button} onPress={takePhoto}>
             <MaterialCommunityIcons
               name="circle-slice-8"
-              style={{ color: "white", fontSize: 80 }}
+              style={{ color: 'white', fontSize: 80 }}
             ></MaterialCommunityIcons>
           </TouchableOpacity>
         </View>
@@ -89,16 +89,16 @@ const CameraScreen = ({ navigation }) => {
               try {
                 setLoading(true);
                 ({ data } = await axios.post(
-                  "https://vision.googleapis.com/v1/images:annotate?key=your_vision_key",
+                  'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDyKPBc5JTIFUK8XCN0WDSW21_Z2Lg3lMM',
                   {
                     requests: [
                       {
                         image: { content: base64 ? base64 : photo.base64 },
 
                         features: [
-                          { type: "TEXT_DETECTION", maxResults: 10 },
+                          { type: 'TEXT_DETECTION', maxResults: 10 },
                           {
-                            type: "DOCUMENT_TEXT_DETECTION",
+                            type: 'DOCUMENT_TEXT_DETECTION',
                             maxResults: 10,
                           },
                         ],
@@ -108,13 +108,13 @@ const CameraScreen = ({ navigation }) => {
                 ));
                 navigation.dispatch(
                   CommonActions.navigate({
-                    name: "문장 선택",
+                    name: '문장 선택',
                     params: { text: data.responses[0].fullTextAnnotation.text },
                   })
                 );
                 setLoading(false);
               } catch (e) {
-                console.log("error: ", e);
+                console.log('error: ', e);
               }
             }}
             saveOptions={{
