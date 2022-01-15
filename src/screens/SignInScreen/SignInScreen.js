@@ -1,26 +1,26 @@
 /* External dependencies */
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import {
   Text,
   View,
   Keyboard,
   TouchableWithoutFeedback,
   TouchableOpacity,
-} from 'react-native';
-import GradientButton from 'react-native-gradient-buttons';
-import InformationInput from 'components/TextInput/InformationInput';
-import { CommonActions } from '@react-navigation/routers';
-import { LinearGradient } from 'expo-linear-gradient';
-import MaskedView from '@react-native-masked-view/masked-view';
+} from "react-native";
+import GradientButton from "react-native-gradient-buttons";
+import InformationInput from "components/TextInput/InformationInput";
+import { CommonActions } from "@react-navigation/routers";
+import { LinearGradient } from "expo-linear-gradient";
+import MaskedView from "@react-native-masked-view/masked-view";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /* Internal dependencies */
-import styles from './style';
-import { getUserAPI } from '../../api/userAPI';
+import styles from "./style";
+import { getUserAPI } from "../../api/userAPI";
 
 function SignInScreen({ navigation }) {
   const [id, setID] = useState();
   const [pw, setPassWord] = useState();
-
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
@@ -29,7 +29,7 @@ function SignInScreen({ navigation }) {
           maskElement={<Text style={styles.trendix}>Trendix</Text>}
         >
           <LinearGradient
-            colors={['cadetblue', '#fabada']}
+            colors={["cadetblue", "#fabada"]}
             start={{ x: 1, y: 1 }}
             end={{ x: 0, y: 0.33 }}
             style={{ flex: 1 }}
@@ -70,17 +70,21 @@ function SignInScreen({ navigation }) {
               onPressAction={() => {
                 getUserAPI({ id, pw }).then((result) => {
                   result.data
-                    ? navigation.dispatch(
+                    ? (AsyncStorage.setItem(
+                        "userId",
+                        JSON.stringify(result.data.userId)
+                      ),
+                      navigation.dispatch(
                         CommonActions.reset({
                           index: 1,
                           routes: [
                             {
-                              name: 'Main',
+                              name: "Main",
                             },
                           ],
                         })
-                      )
-                    : alert('잘못된 로그인입니다.');
+                      ))
+                    : alert("잘못된 로그인입니다.");
                 });
               }}
             />
@@ -93,8 +97,8 @@ function SignInScreen({ navigation }) {
               onPressAction={() => {
                 navigation.dispatch(
                   CommonActions.navigate({
-                    name: 'SignUp',
-                    params: { screenType: 'SignIn' },
+                    name: "SignUp",
+                    params: { screenType: "SignIn" },
                   })
                 );
               }}

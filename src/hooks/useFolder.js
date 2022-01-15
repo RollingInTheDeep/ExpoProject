@@ -6,6 +6,7 @@ import { getFolderAPI } from "../api/folderAPI";
 
 function useFolder({ userId }) {
   const [folderList, setFolderList] = useState([]);
+  console.log(userId);
 
   useEffect(() => {
     handleFolderList();

@@ -1,5 +1,5 @@
 /* External dependencies */
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback, useContext, useEffect } from "react";
 import {
   Fab,
   Icon,
@@ -14,6 +14,7 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { View, Text, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /* Internal dependencies */
 import styles from "./style";
@@ -30,7 +31,21 @@ const HomeScreen = ({ navigation }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [text, setText] = useState(null);
   const [selectedItem, setSelectedItem] = useState([]);
-  const { folderList, onCreate, onRemove } = useFolder({ userId: 6 });
+  const [value, setValue] = useState(null);
+
+  const { folderList, onCreate, onRemove } = useFolder({
+    userId: value ? value : 6,
+  });
+
+  const getData = async () => {
+    setValue(await AsyncStorage.getItem("userId"));
+  };
+
+  useEffect(() => {
+    getData().then((res) => {
+      console.log(folderList);
+    });
+  }, [value]);
 
   const _onPressDelete = () => {
     if (showButton) {
@@ -60,7 +75,7 @@ const HomeScreen = ({ navigation }) => {
     setShowModal(false);
     {
       text
-        ? (createFoldertAPI({ userId: 6, name: text }).then((result) => {
+        ? (createFoldertAPI({ userId: value, name: text }).then((result) => {
             onCreate();
           }),
           setText(null))
