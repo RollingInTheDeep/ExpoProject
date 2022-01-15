@@ -36,9 +36,9 @@ router.post(
 );
 
 router.get("/signin", async function (req, res, next) {
-  const name = req.query.name;
-  const email = req.query.email;
-  const rows = await findUser({ name: name, email: email });
+  const id = req.query.id;
+  const pw = req.query.pw;
+  const rows = await findUser({ id: id, pw: pw });
   res.json(rows);
 });
 

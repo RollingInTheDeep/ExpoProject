@@ -20,8 +20,8 @@ export const uploadImageAPI = ({ formData, config }) => {
   return axios.post("/auth/uploadImage", formData, config);
 };
 
-export const getUserAPI = ({ name, email }) => {
-  return axios.get("/auth/signin", { params: { name: name, email: email } });
+export const getUserAPI = ({ id, pw }) => {
+  return axios.get("/auth/signin", { params: { id: id, pw: pw } });
 };
 
 export const logOutAPI = () => {

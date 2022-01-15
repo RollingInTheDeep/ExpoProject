@@ -2,9 +2,9 @@ const connection = require("./connection");
 const mysql = require("mysql2");
 
 //사용자 조회
-async function findUser({ name, email }) {
+async function findUser({ id, pw }) {
   let [rows, fields] = await connection.query(
-    `SELECT * FROM User WHERE name="${name}" AND email="${email}"`
+    `SELECT * FROM User WHERE id="${id}" AND pw="${pw}"`
   );
   return rows[0];
 }
