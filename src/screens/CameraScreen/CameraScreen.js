@@ -89,7 +89,7 @@ const CameraScreen = ({ navigation }) => {
               try {
                 setLoading(true);
                 ({ data } = await axios.post(
-                  'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDyKPBc5JTIFUK8XCN0WDSW21_Z2Lg3lMM',
+                 'vision_key',
                   {
                     requests: [
                       {
