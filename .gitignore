@@ -8,11 +8,11 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+server/db/config.json
+server/routes/s3config.json
+src/api/axios.js
+
 
 # macOS
 .DS_Store
 
-# server/db/config.json
-# server/routes/s3config.json
-
-# src/api/axios.js
