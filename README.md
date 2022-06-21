@@ -4,7 +4,7 @@
 
 
 ### Trend + Interaction + Extract 종이책의 감성을 그대로 추출하고,트렌드 또한 잃지 않은 어플리케이션
-### 개발 스택 : ReactNative(Expo), AWS EC2 & S3
+### 개발 스택 : ReactNative(Expo), AWS EC2 & S3, Google Vision Api
 
 ## 주요기능
 ### All-In-One 프로세스
